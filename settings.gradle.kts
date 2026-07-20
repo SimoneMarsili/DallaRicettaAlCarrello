@@ -11,4 +11,4 @@ plugins {
 }
 
 rootProject.name = "Gestione Fast Food"
-include("app")
+//include("app")
