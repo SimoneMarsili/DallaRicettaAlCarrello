@@ -1,0 +1,264 @@
+\chapter{Analisi}
+
+\section{Analisi dei requisiti}
+
+Si vuole realizzare un database a supporto della gestione di un ricettario online, il quale mette a disposizione la possibilità di acquisto. 
+La base di dati dovrà quindi immagazzinare informazioni relative agli utenti, alle ricette da loro pubblicate, nonché agli ordini effettuati 
+sul sito. Gli amministratori potranno dunque consultare tutte le ricette inserite, aggiungere nuovi ingredienti disponibili e lanciare nuove 
+promozioni.
+
+
+\textbf{\\Intervista}
+
+
+Si vuole tenere traccia degli utenti registrati al sito memorizzandone nome, cognome, codice fiscale, email, password e opzionalmente un indirizzo di spedizione.
+In seguito alla registrazione l’utente può visualizzare e/o creare delle ricette.
+\\Chi crea una ricetta vi deve associare un nome, una descrizione della preparazione, un tempo stimato di preparazione e i necessari ingredienti con le relative quantità (espresse in grammi).
+\\Gli ingredienti disponibili al momento della creazione della ricetta sono quelli presenti sul sito, ognuno associato ad un codice identificativo, un nome e un relativo prezzo al chilo.
+\\Inoltre nel creare la ricetta, l’utente deve associarla a una o più categorie, anche queste visualizzabili nel sito: ogni categoria è costituita da un codice univoco, una descrizione e un nome (vegano, vegetariano, italiano, asiatico, ...).
+\\Gli utenti possono per di più lasciare delle recensioni alle ricette sul sito, indicando un voto in una scala da 1 a 10 e un eventuale consiglio di modifica (un utente può scrivere un solo giudizio per una determinata ricetta).
+\\In aggiunta, il sistema mette a disposizione la possibilità di acquisto: un utente che visualizza una ricetta può acquistare tutto il necessario per prepararla a casa (eventualmente un utente può acquistare più di una ricetta nello stesso ordine).
+\\Il costo di una ricetta è calcolato quindi come somma dei costi degli ingredienti valutandone il peso.
+Per semplicità non viene gestita la disponibilità degli ingredienti in magazzino.
+\\Infine il sito può lanciare delle promozioni periodiche che offrono degli sconti: in particolare la percentuale di sconto riferita ad una specifica promo dipende dalla categoria di ricetta.
+Nel caso una ricetta preveda più sconti al momento dell’acquisto (più categorie scontate), verrà applicato quello maggiore.
+
+
+\textbf{\\Revisione}
+
+A seguito dell’analisi dell’intervista e del confronto del dominio con applicazioni e siti web realmente esistenti, si è deciso di apportare alcuni cambiamenti nella modellazione e gestione degli sconti, in modo tale da renderle più complesse e realistiche. 
+\\\\Una prima modifica proibisce all’utente di pubblicare due ricette con lo stesso nome, in modo tale da prevenire duplicazioni di ricette sul sito.
+\\\\Una seconda modifica è riassunta dalla seguente descrizione: “la percentuale di sconto riferita ad una specifica promo dipende dalla categoria di ricetta e dal numero di ingredienti di quest’ultima”.
+Nello specifico, uno sconto si riferisce ad un certo intervallo di numero di ingredienti, e una ricetta per essere scontata deve avere un numero di ingredienti appartenente a questo range, oltre che appartenere alla specifica categoria interessata.
+\\\\Infine il dominio impone il seguente vincolo: i range di ingredienti di eventuali sconti riferiti ad una stessa categoria e stessa promozione non devono essere sovrapposti.
+
+A seguito delle revisioni si riformula l’intervista nella seguente:
+
+\begin{table}[H]
+\centering
+\setlength{\extrarowheight}{2pt}
+\begin{tabularx}{\textwidth}{|c|X|}
+\hline
+\multicolumn{2}{|c|}{\textit{\textbf{Definizione delle specifiche in linguaggio naturale}}} \\
+\hline
+1 & Si vuole tenere traccia degli utenti registrati al sito memorizzando nome, cognome,\\
+2 & codice fiscale, email, password e opzionalmente un indirizzo di spedizione. \\
+3 & In seguito alla registrazione l'utente può visualizzare e/o creare delle ricette. \\
+4 & Chi crea una ricetta vi deve associare un nome, una descrizione della preparazione, \\
+5 & un tempo stimato di preparazione e i necessari ingredienti con le relative quantità \\
+6 & (espresse in grammi). \\
+7 & Gli ingredienti disponibili al momento della creazione della ricetta sono quelli \\
+8 & presenti sul sito, ognuno associato ad un codice identificativo, un nome e un relativo \\
+9 & prezzo al chilo. \\
+10 & Inoltre nel creare la ricetta, l'utente deve associarla a una o più categorie, anche \\
+11 & queste visualizzabili nel sito: ogni categoria è costituita da un codice univoco, una \\
+12 & descrizione e un nome (vegano, vegetariano, italiano, asiatico, ...). \\
+13 & Il sistema proibisce all'utente di pubblicare più ricette con lo stesso nome. \\
+14 & Gli utenti possono per di più lasciare delle recensioni alle ricette sul sito, indicando \\
+15 & un voto in una scala da 1 a 10 e un eventuale consiglio di modifica (un utente può \\
+16 & scrivere un solo giudizio per una determinata ricetta). \\
+17 & In aggiunta, il sistema mette a disposizione la possibilità di acquisto: un utente \\
+18 & che visualizza una ricetta può acquistare tutto il necessario per prepararla a casa \\
+19 & (eventualmente un utente può acquistare più di una ricetta nello stesso ordine). \\
+20 & Il costo di una ricetta è calcolato quindi come somma dei costi degli ingredienti \\
+21 & valutandone il peso. \\
+22 & Per semplicità non viene gestita la disponibilità degli ingredienti in magazzino. \\
+23 & Infine il sito può lanciare delle promozioni periodiche che offrono degli sconti: \\
+24 & in particolare la percentuale di sconto riferita ad una specifica promo dipende \\
+25 & dalla categoria di ricetta e dal numero di ingredienti di quest'ultima: un singolo \\
+26 & sconto copre un certo range di numero di ingredienti, e i range di ingredienti di \\
+27 & eventuali sconti riferiti ad una stessa categoria e stessa promozione non devono \\
+28 & essere sovrapposti. \\
+29 & Nel caso una ricetta preveda più sconti al momento dell'acquisto (più categorie \\
+30 & scontate e/o più sconti per una singola categoria), verrà applicato quello maggiore. \\
+\hline
+\end{tabularx}
+\caption*{\textbf{Tabella 1.1.1} - \textit{Specifiche di progetto in linguaggio naturale.}}
+\end{table}
+
+Si procede con l'individuare i termini principali che riassumono al meglio i concetti del dominio.
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.3} % Mantiene un po' di respiro tra le righe
+\setlength{\tabcolsep}{8pt}
+
+\begin{tabularx}{\textwidth}{|l|X|}
+\hline
+\textbf{Termine} & \textbf{Breve descrizione} \\
+\hline
+Utente & Colui che naviga sul sito e che può visualizzare, pubblicare, recensire e acquistare ricette. \\
+Ricetta & Elemento acquistabile che rappresenta un piatto, pensato per essere preparato e consumato. \\
+Ingrediente & Oggetto necessario per la preparazione di una ricetta. \\
+Categoria & Gruppo di appartenenza di una ricetta secondo un determinato criterio. \\
+Recensione & Feedback virtuale riguardante una ricetta e pubblicato da un utente. \\
+Ordine & Richiesta d’acquisto che raggruppa una o più ricette selezionate. \\
+Promozione & Evento commerciale periodico vantaggioso per gli utenti che desiderano acquistare ricette. \\
+Sconto & Ribasso del prezzo di una ricetta secondo certi requisiti. \\
+\hline
+\end{tabularx}
+\caption*{\textbf{Tabella 1.1.2} - \textit{Glossario dei termini.}}
+\end{table}
+
+
+Si tiene conto delle seguenti correzioni di ambiguità:
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.3} % Mantiene lo spazio verticale comodo per il testo
+\setlength{\tabcolsep}{8pt}      % Distanzia il testo dai bordi laterali
+
+\begin{tabularx}{\textwidth}{|c|l|X|}
+\hline
+\textbf{Riga} & \textbf{Termine} & \textbf{Nuovo termine} \\
+\hline
+16 & Giudizio & Recensione \\
+18 & …tutto il necessario… & Ingredienti \\
+24 & Promo & Promozione \\
+\hline
+\end{tabularx}
+\caption*{\textbf{Tabella 1.1.3} - \textit{Rilevamento delle ambiguità e correzioni proposte.}}
+\end{table}
+
+
+\begin{table}[H]
+\centering
+\setlength{\extrarowheight}{2pt}
+\begin{tabularx}{\textwidth}{|c|X|}
+\hline
+\multicolumn{2}{|c|}{\textit{\textbf{Secifiche ristrutturate}}} \\
+\hline
+1 & Degli \textbf{utenti} registrati al sito si memorizzano nome, cognome, codice fiscale, email, \\
+2 & password e opzionalmente un indirizzo di spedizione. \\
+3 & L’utente può visualizzare e/o creare delle ricette. \\
+4 & Chi crea una \textbf{ricetta} vi deve associare un nome, una descrizione della preparazione, \\
+5 & un tempo stimato di preparazione e ogni \textbf{ingrediente} necessario con le relative \\
+6 & quantità (espresse in grammi). \\
+7 & Gli ingredienti disponibili al momento della creazione della ricetta sono quelli \\
+8 & presenti sul sito, ognuno associato ad un codice identificativo, un nome e un relativo \\
+9 & prezzo al chilo. \\
+10 & Inoltre nel creare la ricetta, l’utente deve associarla a una o più categorie, anche \\
+11 & queste visualizzabili nel sito: ogni \textbf{categoria} è costituita da un codice univoco, \\
+12 & una descrizione e un nome (vegano, vegetariano, italiano, asiatico, ...). \\
+13 & Il sistema proibisce all’utente di pubblicare più ricette con lo stesso nome. \\
+14 & Per una determinata ricetta presente sul sito, un utente può pubblicare al massimo \\
+15 & una recensione, indicando un voto in una scala da 1 a 10 e un eventuale consiglio \\
+16 & di modifica. \\
+17 & Un utente che visualizza una ricetta può inoltre acquistare l’insieme di tutti gli \\
+18 & ingredienti per prepararla a casa (eventualmente un utente può acquistare gli \\
+19 & ingredienti di più ricette nello stesso ordine). \\
+20 & Il costo di una ricetta è calcolato quindi come somma dei costi degli ingredienti \\
+21 & valutandone il peso. \\
+22 & Per semplicità non viene gestita la disponibilità degli ingredienti in magazzino. \\
+23 & Infine il sito può lanciare delle \textbf{promozioni} periodiche che offrono degli \textbf{sconti}:\\
+24 & in particolare la percentuale di sconto riferita ad una specifica promo dipende \\
+25 & dalla categoria di ricetta e dal numero di ingredienti di quest’ultima: un singolo \\
+26 & sconto copre un certo range di numero di ingredienti, e i range di ingredienti di \\
+27 & eventuali sconti riferiti ad una stessa categoria e stessa promozione non devono \\
+28 & essere sovrapposti. \\
+29 & Nel caso una ricetta preveda più sconti al momento dell’acquisto (più categorie \\
+30 & scontate e/o più sconti per una singola categoria), verrà applicato quello maggiore. \\
+\hline
+\end{tabularx}
+\caption*{\textbf{Tabella 1.1.4} - \textit{Specifiche di progetto ristrutturate ed estrazione dei concetti principali.}}
+\end{table}
+
+
+\section{Analisi delle viste}
+
+A seguito delle specifiche ristrutturate, si divide il DataBase in due tipologie di utenti diverse:
+
+\begin{itemize}
+    \item \textbf{Utente standard}
+    \item \textbf{Amministratore}
+\end{itemize}
+
+\subsection{Utenti standard}
+
+I requisiti relativi agli utenti standard sono stati già descritti nel paragrafo precedente e non necessitano di alcuna aggiunta.
+
+\textbf{Elenco delle principali azioni per gli utenti standard:}\\
+
+\begin{enumerate}[label=\textbf{U\arabic* - }, leftmargin=1.2cm, itemsep=0.8em]
+
+    \item REGISTRAZIONE UTENTE\\
+    L’utente deve essere in grado di registrarsi correttamente al sito.
+
+    \item VISUALIZZAZIONE DELLE RICETTE\\
+    L’utente deve poter essere in grado di visualizzare l’elenco di tutte le ricette pubblicate sul sito.
+
+    \item VISUALIZZAZIONE DI RICETTE PER FILTRO\\
+    L’utente deve poter visualizzare delle ricette secondo dei filtri di ricerca adeguati:
+    \begin{enumerate}[label=\textbf{U3.\arabic* - }, leftmargin=1.2cm, itemsep=0.2em, topsep=0.3em]
+        \item Filtro per nome della ricetta
+        \item Filtro per ingrediente
+        \item Filtro per tempi di preparazione inferiori a un dato limite
+        \item Filtro per prezzo
+        \item Filtro per utente
+        \item Filtro per categoria/e
+    \end{enumerate}
+
+    \item VISUALIZZAZIONE INGREDIENTI\\
+    L’utente può visualizzare gli ingredienti disponibili sul sito che possono essere usati per comporre le ricette.
+
+    \item PUBBLICAZIONE DI UNA RECENSIONE\\
+    L’utente può valutare una data ricetta pubblicando una recensione contenente voto da 1 a 10 e opzionalmente un commento/suggerimento di modifica.
+
+    \item PUBBLICAZIONE DI UNA RICETTA\\
+    L’utente deve poter essere in grado di pubblicare una ricetta sul sito, selezionando gli ingredienti necessari per realizzarla, la/le categoria/e a cui appartiene e i vari attributi.
+
+    \item VISUALIZZAZIONE VANTAGGI\\
+    L’utente può visualizzare le categorie di ricette per cui ci sono sconti attivi.
+
+    \item VISUALIZZAZIONE ECCELLENZE\\
+    L’utente può visualizzare:
+    \begin{enumerate}[label=\textbf{U8.\arabic* - }, leftmargin=1.2cm, itemsep=0.2em, topsep=0.3em]
+        \item Le migliori ricette in base alle recensioni
+        \item I migliori utenti in base alla media delle recensioni delle ricette da loro pubblicate
+        \item Le ricette maggiormente ordinate
+        \item Le categorie di ricette maggiormente ordinate
+    \end{enumerate}
+
+    \item EFFETTUAZIONE DI UN ORDINE\\
+    L’utente può richiedere un ordine, il quale contiene il set di ingredienti di una o più ricette. All’ordine vengono applicati eventuali sconti (ad una ricetta che ha più sconti possibili verrà applicato quello massimo).
+
+    \item VISUALIZZAZIONE STORICO ORDINI\\
+    L’utente può visualizzare tutti i suoi ordini effettuati in passato negli ultimi $n$ mesi, in base alle sue preferenze.
+
+    \item VISUALIZZAZIONE SPECIFICA RICETTA\\
+    L’utente può visualizzare tutti i dettagli di una specifica ricetta, come il prezzo, l’utente che l’ha pubblicata, la media delle recensioni, l’elenco degli ingredienti e le categorie di appartenenza.
+
+\end{enumerate}
+
+\subsection{Amministratore}
+
+L’amministratore è colui che si occupa di gestire il sito e i relativi dati, preoccupandosi di registrare i nuovi utenti con le relative informazioni.\\
+E’ responsabile della gestione del catalogo di ingredienti disponibili, deve quindi poter inserire nuovi ingredienti determinandone il prezzo al chilo, o al contrario rimuoverli se non più disponibili.\\
+L’amministratore deve inoltre poter inserire nuove categorie di ricetta in base allo sviluppo culinario nel mondo.\\
+Deve inoltre tenere sotto controllo l’equilibrio economico del sito, aggiungendo opportunamente nuove promozioni e sconti associati.\\
+Infine l’amministratore deve mantenere il sito pulito e coerente: egli ha infatti il potere di rimuovere utenti che hanno pubblicato ricette con dati inadeguati.
+
+\textbf{Elenco delle principali azioni per l'amministratore:}\\
+
+\begin{enumerate}[label=\textbf{A\arabic* - }, leftmargin=1.2cm, itemsep=0.8em]
+
+    \item INSERIMENTO INGREDIENTE\\
+    L’amministratore deve poter aggiungere un ingrediente alla lista disponibile, specificando il prezzo al chilo.
+
+    \item AGGIORNAMENTO INGREDIENTE\\
+    L’amministratore può modificare il prezzo (al chilo) per un ingrediente disponibile sul sito.
+
+    \item INSERIMENTO CATEGORIA\\
+    L’amministratore può aggiungere nuove categorie di ricette disponibili sul sito.
+
+    \item LANCIO DI UNA PROMOZIONE\\
+    L’amministratore può inserire nuove promozioni periodiche che annunciano l’inizio di un periodo vantaggioso.
+
+    \item PUBBLICAZIONE SCONTI\\
+    L’amministratore può inserire nuovi sconti in base alla promozione di riferimento e alla categoria di ricetta.
+
+    \item RIMOZIONE UTENTI\\
+    L’amministratore può rimuovere manualmente utenti che hanno pubblicato diverse ricette con categorie inadeguate. \\
+    Il sistema pone particolare attenzione alle ricette vegane e l’amministratore è in grado di individuare in modo automatico ricette classificate come tali ma che non lo sono (ad esempio una ricetta classificata come vegana ma che contiene carne o pesce). In questo particolare caso delle ricette vegane, l’utente verrà rimosso dal sistema alla pubblicazione di almeno 3 ricette inadeguate (e tutte le sue ricette con lui).
+
+\end{enumerate}

@@ -1,0 +1,95 @@
+\documentclass[12pt,a4paper]{report}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[italian]{babel}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{titlesec}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{xcolor}
+\usepackage{caption}
+\usepackage{enumitem}
+\usepackage{xurl}
+\usepackage[htt]{hyphenat}
+\usepackage{parskip}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{lineno} % Pacchetto per la numerazione automatica delle righe fisiche
+\usepackage{framed}
+
+% 1. MARGINI RIDOTTI (sfrutta più spazio nella pagina)
+\usepackage[
+  top=2.2cm,
+  bottom=2.2cm,
+  left=2.5cm,
+  right=2.5cm
+]{geometry}
+
+\definecolor{captiongray}{RGB}{70, 70, 70}
+\captionsetup[figure]{
+    font=small,
+    labelfont={color=captiongray},
+    textfont={color=captiongray},
+    justification=centering
+}
+
+% 2. TITOLO CAPITOLO (Grande "\huge" e senza punto dopo il numero)
+\titleformat{\chapter}[hang]
+    {\normalfont\huge\bfseries}
+    {\thechapter}
+    {0.75em}
+    {}
+
+% 3. POSIZIONAMENTO IN ALTO (Rimuove lo spazio vuoto enorme sopra il capitolo)
+\titlespacing*{\chapter}{0pt}{-15pt}{15pt}
+\titlespacing*{\section}{0pt}{12pt}{6pt}
+
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+    linktoc=all,
+    pdftitle={HearthCode},
+    pdfauthor={Simone Marsili, Francesco Dama}
+}
+
+\begin{document}
+
+\pagenumbering{gobble}
+\begin{titlepage}
+    \centering
+    {\Large Relazione per Basi di Dati\par}
+
+    \vspace{1cm}
+
+    {\Huge\bfseries Dalla Ricetta Al Carrello - Sistema di gestione ricette, acquisti e promozioni\par}
+
+    \vfill
+
+    \begin{flushright}
+        Simone Marsili\\
+        Francesco Dama
+    \end{flushright}
+\end{titlepage}
+
+\clearpage
+\pagenumbering{Roman}
+\tableofcontents
+
+\clearpage
+\pagenumbering{arabic}
+\input{1_Analisi}
+\input{2_Concettuale}
+\input{3_Logica}
+%\input{4_CommentiFinali}
+
+%\appendix
+%\titleformat{\chapter}[display]
+%    {\normalfont\huge\bfseries}
+%    {\appendixname~\thechapter}
+%    {20pt}
+%    {\Huge}
+%\input{5_GuidaUtente}
+%\input{6_EsercitazioniDiLaboratorio}
+
+\end{document}

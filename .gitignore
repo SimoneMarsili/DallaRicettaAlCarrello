@@ -6,3 +6,11 @@ build
 
 #Ignore bin
 bin/
+
+# Ignore LaTeX temporary files
+docs/**
+!docs/**/
+!docs/**/*.tex
+!docs/**/*.pdf
+!docs/**/*.puml
+!docs/**/*.png
