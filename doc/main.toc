@@ -16,3 +16,10 @@
 \contentsline {chapter}{\numberline {3}Progettazione logica}{13}{chapter.3}%
 \contentsline {section}{\numberline {3.1}Stima del volume dei dati}{13}{section.3.1}%
 \contentsline {section}{\numberline {3.2}Descrizione delle operazioni principali e stima della loro frequenza}{13}{section.3.2}%
+\contentsline {section}{\numberline {3.3}Schemi di navigazione e tabelle degli accessi}{14}{section.3.3}%
+\contentsline {section}{\numberline {3.4}Analisi delle ridondanze}{23}{section.3.4}%
+\contentsline {subsection}{\numberline {3.4.1}MediaRecensioni}{23}{subsection.3.4.1}%
+\contentsline {subsection}{\numberline {3.4.2}PrezzoRicetta}{26}{subsection.3.4.2}%
+\contentsline {subsection}{\numberline {3.4.3}NumeroIngredienti}{27}{subsection.3.4.3}%
+\contentsline {section}{\numberline {3.5}Raffinamento dello schema}{28}{section.3.5}%
+\contentsline {section}{\numberline {3.6}Traduzione delle entità e associazioni in relazioni}{29}{section.3.6}%

@@ -110,3 +110,1069 @@ A6 & RIMOZIONE UTENTI & 1 al mese & B \\
 \end{table}
 
 \textbf{Nota}: la frequenza indicata nell’operazione U3 indica la frequenza totale di tutte le operazioni di ricerca per filtro (U3.1 - U3.6), le cui singole frequenze sono approssimativamente in ugual parti.
+
+\section{Schemi di navigazione e tabelle degli accessi}
+
+Dopo aver determinato il volume dei dati ed aver associato a ciascuna operazione principale richiesta la propria frequenza di esecuzione, si procede determinando lo schema di navigazione di riferimento per le principali operazioni non banali e si associa ad ognuna di essa anche la relativa tavola degli accessi. Nel calcolo degli accessi si stima come doppio il peso degli accessi in scrittura, rispetto a quelli in lettura.
+
+Si analizzano gli accessi tenendo conto degli attributi ridondanti “MediaRecensioni”, “PrezzoRicetta” e “NumeroIngredienti” nell’entità RICETTA (si veda la sezione Analisi ridondanze).
+
+\subsection*{U3 - VISUALIZZAZIONE RICETTE PER FILTRO}
+
+\subsubsection*{U3.2 - FILTRO PER INGREDIENTE}
+Dato un certo ingrediente visualizzare tutte le ricette che lo contengono.
+
+\begin{figure}[H]
+    \centering
+    % Regola la larghezza. 0.8\textwidth significa "80% della larghezza del testo".
+    % Puoi usare anche cm, es: width=10cm
+    \includegraphics[width=0.8\textwidth]{images/nav_u3.2.png}
+    %\caption{navigazione}
+    \label{fig:nav_u3.1} % Etichetta per fare riferimento: vedi Figura \ref{fig:mia_immagine}
+\end{figure}
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.3}
+\setlength{\tabcolsep}{8pt}
+\begin{tabularx}{\textwidth}{|X|c|r|c|}
+\hline
+\textbf{Concetto} & \textbf{Costrutto} & \textbf{Accessi} & \textbf{Tipo} \\
+\hline
+INGREDIENTE & E & 1 & L \\
+\hline
+composizione & R & 1.500.000 / 1000 = 1.500 & L \\
+\hline
+RICETTA & E & 1.500.000 / 1000 = 1.500 & L \\
+\hline
+\end{tabularx}
+\end{table}
+
+\begin{itemize}[leftmargin=1cm, label=--]
+    \item \textbf{Totale accessi:} 3.001 L
+    \item \textbf{Frequenza operazione:} 166 al giorno
+    \item \textbf{Costo totale:} $3.001 \times 166 = 498.166$ accessi/giorno
+\end{itemize}
+
+\vspace{1em}
+
+\subsubsection*{U3.5 - FILTRO PER UTENTE}
+Dato un certo utente visualizzare tutte le ricette da lui pubblicate.
+
+\begin{figure}[H]
+    \centering
+    % Regola la larghezza. 0.8\textwidth significa "80% della larghezza del testo".
+    % Puoi usare anche cm, es: width=10cm
+    \includegraphics[width=0.8\textwidth]{images/nav_u3.5.png}
+    %\caption{navigazione}
+    \label{fig:nav_u3.5} % Etichetta per fare riferimento: vedi Figura \ref{fig:mia_immagine}
+\end{figure}
+
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.3}
+\setlength{\tabcolsep}{8pt}
+\begin{tabularx}{\textwidth}{|X|c|r|c|}
+\hline
+\textbf{Concetto} & \textbf{Costrutto} & \textbf{Accessi} & \textbf{Tipo} \\
+\hline
+UTENTE & E & 1 & L \\
+\hline
+pubblicazione & R & 150.000 / 10.000 = 15 & L \\
+\hline
+RICETTA & E & 150.000 / 10.000 = 15 & L \\
+\hline
+\end{tabularx}
+\end{table}
+
+\begin{itemize}[leftmargin=1cm, label=--]
+    \item \textbf{Totale accessi:} 31 L
+    \item \textbf{Frequenza operazione:} 166 al giorno
+    \item \textbf{Costo totale:} $31 \times 166 = 5.146$ accessi/giorno
+\end{itemize}
+
+\vspace{1em}
+
+\subsubsection*{U3.6 - FILTRO PER CATEGORIA}
+Data una categoria visualizzare tutte le ricette che appartengono a quella categoria.
+
+\begin{figure}[H]
+    \centering
+    % Regola la larghezza. 0.8\textwidth significa "80% della larghezza del testo".
+    % Puoi usare anche cm, es: width=10cm
+    \includegraphics[width=0.8\textwidth]{images/nav_u3.6.png}
+    %\caption{navigazione}
+    \label{fig:nav_u3.6} % Etichetta per fare riferimento: vedi Figura \ref{fig:mia_immagine}
+\end{figure}
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.3}
+\setlength{\tabcolsep}{8pt}
+\begin{tabularx}{\textwidth}{|X|c|r|c|}
+\hline
+\textbf{Concetto} & \textbf{Costrutto} & \textbf{Accessi} & \textbf{Tipo} \\
+\hline
+CATEGORIA & E & 1 & L \\
+\hline
+appartenenza & R & 450.000 / 30 = 15.000 & L \\
+\hline
+RICETTA & E & 450.000 / 30 = 15.000 & L \\
+\hline
+\end{tabularx}
+\end{table}
+
+\begin{itemize}[leftmargin=1cm, label=--]
+    \item \textbf{Totale accessi:} 30.001 L
+    \item \textbf{Frequenza operazione:} 166 al giorno
+    \item \textbf{Costo totale:} $30.001 \times 166 = 4.980.166$ accessi/giorno
+\end{itemize}
+
+\vspace{1em}
+
+
+\vspace{2em}
+\hrule
+\vspace{2em}
+
+\subsection*{U5 - PUBBLICAZIONE RECENSIONE}
+Pubblicazione di una recensione relativa ad una specifica ricetta da parte di un utente.
+
+\begin{figure}[H]
+    \centering
+    % Regola la larghezza. 0.8\textwidth significa "80% della larghezza del testo".
+    % Puoi usare anche cm, es: width=10cm
+    \includegraphics[width=0.8\textwidth]{images/nav_u5.png}
+    %\caption{navigazione}
+    \label{fig:nav_u5} % Etichetta per fare riferimento: vedi Figura \ref{fig:mia_immagine}
+\end{figure}
+
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.3}
+\setlength{\tabcolsep}{8pt}
+\begin{tabularx}{\textwidth}{|X|c|r|c|}
+\hline
+\textbf{Concetto} & \textbf{Costrutto} & \textbf{Accessi} & \textbf{Tipo} \\
+\hline
+UTENTE & E & 1 & L \\
+\hline
+recensione & R & 1 & S \\
+\hline
+RICETTA & E & 1 & L \\
+\hline
+\end{tabularx}
+\end{table}
+
+\begin{itemize}[leftmargin=1cm, label=--]
+    \item \textbf{Totale accessi:} 2 L + 1 S
+    \item \textbf{Frequenza operazione:} 100 al giorno
+    \item \textbf{Costo totale:} $4 \times 100 = 400$ accessi/giorno
+\end{itemize}
+
+\vspace{1em}
+
+\vspace{2em}
+\hrule
+\vspace{2em}
+
+\subsection*{U6 - PUBBLICAZIONE RICETTA}
+Pubblicazione di una ricetta da parte di un utente il quale deve selezionare gli ingredienti e le categorie esistenti.
+
+\begin{figure}[H]
+    \centering
+    % Regola la larghezza. 0.8\textwidth significa "80% della larghezza del testo".
+    % Puoi usare anche cm, es: width=10cm
+    \includegraphics[width=0.8\textwidth]{images/nav_u6.png}
+    %\caption{navigazione}
+    \label{fig:nav_u6} % Etichetta per fare riferimento: vedi Figura \ref{fig:mia_immagine}
+\end{figure}
+
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.3}
+\setlength{\tabcolsep}{8pt}
+\begin{tabularx}{\textwidth}{|X|c|r|c|}
+\hline
+\textbf{Concetto} & \textbf{Costrutto} & \textbf{Accessi} & \textbf{Tipo} \\
+\hline
+UTENTE & E & 1 & L \\
+\hline
+pubblicazione & R & 1 & S \\
+\hline
+RICETTA & E & 1 & S \\
+\hline
+CATEGORIA & E & 450.000 / 150.000 = 3 & L \\
+\hline
+appartenenza & R & 450.000 / 150.000 = 3 & S \\
+\hline
+INGREDIENTE & E & 1.500.000 / 150.000 = 10 & L \\
+\hline
+composizione & R & 1.500.000 / 150.000 = 10 & S \\
+\hline
+\end{tabularx}
+\end{table}
+
+\begin{itemize}[leftmargin=1cm, label=--]
+    \item \textbf{Totale accessi:} 14 L + 15 S 
+    \item \textbf{Frequenza operazione:} 50 al giorno
+    \item \textbf{Costo totale:} $44 \times 50 = 2200$ accessi/giorno
+\end{itemize}
+
+\vspace{1em}
+
+\vspace{2em}
+\hrule
+\vspace{2em}
+
+\subsection*{U8 - VISUALIZZAZIONE ECCELLENZE}
+
+\subsubsection*{U8.2 - VISUALIZZAZIONE MIGLIORI UTENTI}
+Visualizzazione degli n migliori utenti in base alla media delle recensioni delle ricette da loro pubblicate.
+
+\begin{figure}[H]
+    \centering
+    % Regola la larghezza. 0.8\textwidth significa "80% della larghezza del testo".
+    % Puoi usare anche cm, es: width=10cm
+    \includegraphics[width=0.8\textwidth]{images/nav_u8.2.png}
+    %\caption{navigazione}
+    \label{fig:nav_u8.2} % Etichetta per fare riferimento: vedi Figura \ref{fig:mia_immagine}
+\end{figure}
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.3}
+\setlength{\tabcolsep}{8pt}
+\begin{tabularx}{\textwidth}{|X|c|r|c|}
+\hline
+\textbf{Concetto} & \textbf{Costrutto} & \textbf{Accessi} & \textbf{Tipo} \\
+\hline
+UTENTE & E & 10.000 & L \\
+\hline
+pubblicazione & R & 150.000 & L \\
+\hline
+RICETTA & E & 150.000 & L \\
+\hline
+\end{tabularx}
+\end{table}
+
+\begin{itemize}[leftmargin=1cm, label=--]
+    \item \textbf{Totale accessi:} 310.000 L
+    \item \textbf{Frequenza operazione:} 10 al giorno
+    \item \textbf{Costo totale:} $310.000 \times 10 = 3.100.000$ accessi/giorno
+\end{itemize}
+
+\vspace{1em}
+
+
+\subsubsection*{U8.3 - VISUALIZZAZIONE RICETTE PIÙ ORDINATE}
+Visualizzazione delle n ricette maggiormente ordinate.
+
+\begin{figure}[H]
+    \centering
+    % Regola la larghezza. 0.8\textwidth significa "80% della larghezza del testo".
+    % Puoi usare anche cm, es: width=10cm
+    \includegraphics[width=0.8\textwidth]{images/nav_u8.3.png}
+    %\caption{navigazione}
+    \label{fig:nav_u8.3} % Etichetta per fare riferimento: vedi Figura \ref{fig:mia_immagine}
+\end{figure}
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.3}
+\setlength{\tabcolsep}{8pt}
+\begin{tabularx}{\textwidth}{|X|c|r|c|}
+\hline
+\textbf{Concetto} & \textbf{Costrutto} & \textbf{Accessi} & \textbf{Tipo} \\
+\hline
+acquisto & R & 600.000 & L \\
+\hline
+RICETTA & E & 150.000 & L \\
+\hline
+\end{tabularx}
+\end{table}
+
+\begin{itemize}[leftmargin=1cm, label=--]
+    \item \textbf{Totale accessi:} 750.000 L
+    \item \textbf{Frequenza operazione:} 100 al giorno
+    \item \textbf{Costo totale:} $750.000 \times 100 = 75.000.000$ accessi/giorno
+\end{itemize}
+
+\vspace{1em}
+
+
+\subsubsection*{U8.4 - VISUALIZZAZIONE CATEGORIE DI RICETTA PIÙ ORDINATE}
+Visualizzazione delle n categorie di ricetta maggiormente ordinate.
+
+\begin{figure}[H]
+    \centering
+    % Regola la larghezza. 0.8\textwidth significa "80% della larghezza del testo".
+    % Puoi usare anche cm, es: width=10cm
+    \includegraphics[width=1\textwidth]{images/nav_u8.4.png}
+    %\caption{navigazione}
+    \label{fig:nav_u8.4} % Etichetta per fare riferimento: vedi Figura \ref{fig:mia_immagine}
+\end{figure}
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.3}
+\setlength{\tabcolsep}{8pt}
+\begin{tabularx}{\textwidth}{|X|c|r|c|}
+\hline
+\textbf{Concetto} & \textbf{Costrutto} & \textbf{Accessi} & \textbf{Tipo} \\
+\hline
+acquisto & R & 600.000 & L \\
+\hline
+RICETTA & E & 150.000 & L \\
+\hline
+appartenenza & R & 450.000 & L \\
+\hline
+CATEGORIA & E & 450.000 & L \\
+\hline
+\end{tabularx}
+\end{table}
+
+\begin{itemize}[leftmargin=1cm, label=--]
+    \item \textbf{Totale accessi:} 1.650.000 L
+    \item \textbf{Frequenza operazione:} 100 al giorno
+    \item \textbf{Costo totale:} $1.650.000 \times 100 = 165.000.000$ accessi/giorno
+\end{itemize}
+
+\vspace{1em}
+
+
+\vspace{2em}
+\hrule
+\vspace{2em}
+
+\subsection*{U9 - EFFETTUAZIONE ORDINE}
+Effettuazione di un ordine da parte di un utente di una o più ricette con ricerca dello sconto migliore.
+
+\begin{figure}[H]
+    \centering
+    % Regola la larghezza. 0.8\textwidth significa "80% della larghezza del testo".
+    % Puoi usare anche cm, es: width=10cm
+    \includegraphics[width=1\textwidth]{images/nav_u9.png}
+    %\caption{navigazione}
+    \label{fig:nav_u9} % Etichetta per fare riferimento: vedi Figura \ref{fig:mia_immagine}
+\end{figure}
+
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.3}
+\setlength{\tabcolsep}{8pt}
+\begin{tabularx}{\textwidth}{|X|c|r|c|}
+\hline
+\textbf{Concetto} & \textbf{Costrutto} & \textbf{Accessi} & \textbf{Tipo} \\
+\hline
+UTENTE & E & 1 & L \\
+\hline
+richiesta & R & 1 & S \\
+\hline
+ORDINE & E & 1 & S \\
+\hline
+acquisto & R & 600.000 / 300.000 = 2 & S \\
+\hline
+RICETTA & E & 2 & L \\
+\hline
+appartenenza & R & 2$ \times (450.000 / 150.000) = 6$ & L \\
+\hline
+CATEGORIA & E & 6 & L \\
+\hline
+applicazione & R & 6$ \times (15.000 / 30) = 3000$ & L \\
+\hline
+SCONTO & E & 3000 & L \\
+\hline
+offerta & R & 3000 & L \\
+\hline
+PROMO & E & 3000 & L \\
+\hline
+\end{tabularx}
+\end{table}
+
+\begin{itemize}[leftmargin=1cm, label=--]
+    \item \textbf{Totale accessi:} 12.015 L + 4 S 
+    \item \textbf{Frequenza operazione:} 100 al giorno
+    \item \textbf{Costo totale:} $12.023 \times 100 = 1.202.300$ accessi/giorno
+\end{itemize}
+
+\vspace{1em}
+
+\vspace{2em}
+\hrule
+\vspace{2em}
+
+\subsection*{U10 - VISUALIZZAZIONE STORICO ORDINI}
+Visualizzare lo storico degli ordini di un determinato utente e le relative ricette presenti negli ordini.
+
+\begin{figure}[H]
+    \centering
+    % Regola la larghezza. 0.8\textwidth significa "80% della larghezza del testo".
+    % Puoi usare anche cm, es: width=10cm
+    \includegraphics[width=1\textwidth]{images/nav_u10.png}
+    %\caption{navigazione}
+    \label{fig:nav_u10} % Etichetta per fare riferimento: vedi Figura \ref{fig:mia_immagine}
+\end{figure}
+
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.3}
+\setlength{\tabcolsep}{8pt}
+\begin{tabularx}{\textwidth}{|X|c|r|c|}
+\hline
+\textbf{Concetto} & \textbf{Costrutto} & \textbf{Accessi} & \textbf{Tipo} \\
+\hline
+UTENTE & E & 1 & L \\
+\hline
+richiesta & R & 300.000 / 10.000 = 30 & L \\
+\hline
+ORDINE & E & 30 & L \\
+\hline
+acquisto & E & 30$ \times (600.000 / 300.00) = 60$ & L \\
+\hline
+RICETTA & R & 60 & L \\
+\hline
+\end{tabularx}
+\end{table}
+
+\begin{itemize}[leftmargin=1cm, label=--]
+    \item \textbf{Totale accessi:} 181 L 
+    \item \textbf{Frequenza operazione:} 50 al giorno
+    \item \textbf{Costo totale:} $181 \times 50 = 9050$ accessi/giorno
+\end{itemize}
+
+\vspace{1em}
+
+\vspace{2em}
+\hrule
+\vspace{2em}
+
+\subsection*{U11 - VISUALIZZAZIONE SPECIFICA RICETTA}
+Data una ricetta, visualizzare tutti i suoi dettagli, come la descrizione, il prezzo, l’utente che l’ha pubblicata, la media delle recensioni, l’elenco degli ingredienti e le categorie di appartenenza.
+
+
+\begin{figure}[H]
+    \centering
+    % Regola la larghezza. 0.8\textwidth significa "80% della larghezza del testo".
+    % Puoi usare anche cm, es: width=10cm
+    \includegraphics[width=1\textwidth]{images/nav_u11.png}
+    %\caption{navigazione}
+    \label{fig:nav_u11} % Etichetta per fare riferimento: vedi Figura \ref{fig:mia_immagine}
+\end{figure}
+
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.3}
+\setlength{\tabcolsep}{8pt}
+\begin{tabularx}{\textwidth}{|X|c|r|c|}
+\hline
+\textbf{Concetto} & \textbf{Costrutto} & \textbf{Accessi} & \textbf{Tipo} \\
+\hline
+UTENTE & E & 1 & L \\
+\hline
+pubblicazione & R & 1 & L \\
+\hline
+appartenenza & R & 450.000 / 150.000 = 3 & L \\
+\hline
+CATEGORIA & E & 3 & L \\
+\hline
+composizione & R & 1.500.000 / 150.000 = 10 & L \\
+\hline
+INGREDIENTE & E & 10 & L \\
+\hline
+RICETTA & E & 1 & L \\
+\hline
+\end{tabularx}
+\end{table}
+
+\begin{itemize}[leftmargin=1cm, label=--]
+    \item \textbf{Totale accessi:} 29 L 
+    \item \textbf{Frequenza operazione:} 1500 al giorno
+    \item \textbf{Costo totale:} $29 \times 1500 = 43.500$ accessi/giorno
+\end{itemize}
+
+\vspace{1em}
+
+\vspace{2em}
+\hrule
+\vspace{2em}
+
+\subsection*{A5 - PUBBLICAZIONE SCONTO}
+Viene pubblicato un nuovo sconto riferito ad una specifica promo attiva e ad una categoria di ricetta.
+
+\begin{figure}[H]
+    \centering
+    % Regola la larghezza. 0.8\textwidth significa "80% della larghezza del testo".
+    % Puoi usare anche cm, es: width=10cm
+    \includegraphics[width=1\textwidth]{images/nav_a5.png}
+    %\caption{navigazione}
+    \label{fig:nav_a5} % Etichetta per fare riferimento: vedi Figura \ref{fig:mia_immagine}
+\end{figure}
+
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.3}
+\setlength{\tabcolsep}{8pt}
+\begin{tabularx}{\textwidth}{|X|c|r|c|}
+\hline
+\textbf{Concetto} & \textbf{Costrutto} & \textbf{Accessi} & \textbf{Tipo} \\
+\hline
+PROMOZIONE & E & 1 & L \\
+\hline
+offerta & R & 1 & S \\
+\hline
+CATEGORIA & E & 1 & L \\
+\hline
+applicazione & R & 1 & S \\
+\hline
+SCONTO & E & 1 & S \\
+\hline
+\end{tabularx}
+\end{table}
+
+\begin{itemize}[leftmargin=1cm, label=--]
+    \item \textbf{Totale accessi:} 2 L + 3 S 
+    \item \textbf{Frequenza operazione:} 75 all' anno
+    \item \textbf{Costo totale:} $8 \times 75 = 600$ accessi/anno
+\end{itemize}
+
+\vspace{1em}
+
+\vspace{2em}
+\hrule
+\vspace{2em}
+
+\subsection*{A6 - RIMOZIONE UTENTI}
+Si individuano e eliminano utenti che abbiano pubblicato almeno 3 ricette dichiarate come vegane ma contenenti almeno un ingrediente non vegano.\\
+Nella tabella degli accessi si individuano i costi della sola operazione di ricerca, e non di effettiva rimozione utenti.
+
+
+\begin{figure}[H]
+    \centering
+    % Regola la larghezza. 0.8\textwidth significa "80% della larghezza del testo".
+    % Puoi usare anche cm, es: width=10cm
+    \includegraphics[width=1\textwidth]{images/nav_a6.png}
+    %\caption{navigazione}
+    \label{fig:nav_a6} % Etichetta per fare riferimento: vedi Figura \ref{fig:mia_immagine}
+\end{figure}
+
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.3}
+\setlength{\tabcolsep}{8pt}
+\begin{tabularx}{\textwidth}{|X|c|r|c|}
+\hline
+\textbf{Concetto} & \textbf{Costrutto} & \textbf{Accessi} & \textbf{Tipo} \\
+\hline
+UTENTE & E & 10.000 & L \\
+\hline
+pubblicazione & R & 150.000 & L \\
+\hline
+RICETTA & E & 150.000 & L \\
+\hline
+appartenenza & R & 450.000 & L \\
+\hline
+CATEGORIA & E & 450.000 & L \\
+\hline
+composizione & R & 1.500.000 & L \\
+\hline
+INGREDIENTE & E & 1.500.000 & L \\
+\hline
+\end{tabularx}
+\end{table}
+
+\begin{itemize}[leftmargin=1cm, label=--]
+    \item \textbf{Totale accessi:} 4.210.000 L 
+    \item \textbf{Frequenza operazione:} 1 al mese
+    \item \textbf{Costo totale:}  4.210.000 accessi/mese
+\end{itemize}
+
+\vspace{1em}
+
+\section{Analisi delle ridondanze}
+
+\subsection{MediaRecensioni}
+Dato l’elevato numero di ricette che possono esserci, si è pensato di visualizzare le migliori ricette in base alle recensioni nella pagina principale del sito web, nella sezione ricette.\\
+Questa scelta determina un’alta frequenza dell'operazione \textbf{U8.1}: si è valutato quindi il mantenimento di un attributo ridondante \texttt{MediaRecensioni} all’interno dell'entità \textbf{RICETTA}.
+
+Per quello che riguarda l’analisi dell’operazione \textbf{U11} si è tenuto conto solamente del calcolo della media delle recensioni, poiché il numero degli altri accessi è equivalente in presenza o meno della ridondanza.
+
+\subsubsection*{SENZA RIDONDANZA}
+
+\noindent\textbf{Operazione U5}
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.2}
+\setlength{\tabcolsep}{8pt}
+\begin{tabularx}{\textwidth}{|X|c|r|c|}
+\hline
+\textbf{Concetto} & \textbf{Costrutto} & \textbf{Accessi} & \textbf{Tipo} \\
+\hline
+UTENTE & E & 1 & L \\
+\hline
+recensione & R & 1 & S \\
+\hline
+RICETTA & E & 1 & L \\
+\hline
+\end{tabularx}
+\end{table}
+\textbf{Costo totale U5:} $4 \times 100 \mbox{ al giorno} = 400 \mbox{ accessi/giorno}$
+
+\vspace{1.5em}
+
+\noindent\textbf{Operazione U8.1}
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.2}
+\setlength{\tabcolsep}{8pt}
+\begin{tabularx}{\textwidth}{|X|c|r|c|}
+\hline
+\textbf{Concetto} & \textbf{Costrutto} & \textbf{Accessi} & \textbf{Tipo} \\
+\hline
+RICETTA & E & 150.000 & L \\
+\hline
+recensione & R & 3.000.000 & L \\
+\hline
+\end{tabularx}
+\end{table}
+\textbf{Costo totale U8.1:} $3.150.000 \times 1.500 \mbox{ al giorno} = 4.725.000.000 \mbox{ accessi/giorno}$
+
+\vspace{1.5em}
+
+\noindent\textbf{Operazione U8.2}
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.2}
+\setlength{\tabcolsep}{8pt}
+\begin{tabularx}{\textwidth}{|X|c|r|c|}
+\hline
+\textbf{Concetto} & \textbf{Costrutto} & \textbf{Accessi} & \textbf{Tipo} \\
+\hline
+UTENTE & E & 10.000 & L \\
+\hline
+pubblicazione & R & 150.000 & L \\
+\hline
+recensione & R & 3.000.000 & L \\
+\hline
+RICETTA & E & 150.000 & L \\
+\hline
+\end{tabularx}
+\end{table}
+\textbf{Costo totale U8.2:} $3.310.000 \times 10 \mbox{ al giorno} = 33.100.000 \mbox{ accessi/giorno}$
+
+\vspace{1.5em}
+
+\noindent\textbf{Operazione U11}
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.2}
+\setlength{\tabcolsep}{8pt}
+\begin{tabularx}{\textwidth}{|X|c|r|c|}
+\hline
+\textbf{Concetto} & \textbf{Costrutto} & \textbf{Accessi} & \textbf{Tipo} \\
+\hline
+RICETTA & E & 1 & L \\
+\hline
+recensione & R & 3.000.000 / 150.000 = 20 & L \\
+\hline
+\end{tabularx}
+\end{table}
+\textbf{Costo totale U11:} $21 \times 1.500 \mbox{ al giorno} = 31.500 \mbox{ accessi/giorno}$
+
+\vspace{2em}
+
+\subsubsection*{CON RIDONDANZA}
+
+\noindent\textbf{Operazione U5}
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.2}
+\setlength{\tabcolsep}{8pt}
+\begin{tabularx}{\textwidth}{|X|c|r|c|}
+\hline
+\textbf{Concetto} & \textbf{Costrutto} & \textbf{Accessi} & \textbf{Tipo} \\
+\hline
+UTENTE & E & 1 & L \\
+\hline
+recensione & R & 1 & S \\
+\hline
+recensione & R & 20 & L \\
+\hline
+RICETTA & E & 1 & L \\
+\hline
+RICETTA & E & 1 & S \\
+\hline
+\end{tabularx}
+\end{table}
+\textbf{Costo totale U5:} $26 \times 100 \mbox{ al giorno} = 2.600 \mbox{ accessi/giorno}$
+
+\vspace{1.5em}
+
+\noindent\textbf{Operazione U8.1}
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.2}
+\setlength{\tabcolsep}{8pt}
+\begin{tabularx}{\textwidth}{|X|c|r|c|}
+\hline
+\textbf{Concetto} & \textbf{Costrutto} & \textbf{Accessi} & \textbf{Tipo} \\
+\hline
+RICETTA & E & 150.000 & L \\
+\hline
+\end{tabularx}
+\end{table}
+\textbf{Costo totale U8.1:} $150.000 \times 1.500 \mbox{ al giorno} = 225.000.000 \mbox{ accessi/giorno}$
+
+\vspace{1.5em}
+
+\noindent\textbf{Operazione U8.2}
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.2}
+\setlength{\tabcolsep}{8pt}
+\begin{tabularx}{\textwidth}{|X|c|r|c|}
+\hline
+\textbf{Concetto} & \textbf{Costrutto} & \textbf{Accessi} & \textbf{Tipo} \\
+\hline
+UTENTE & E & 10.000 & L \\
+\hline
+pubblicazione & R & 150.000 & L \\
+\hline
+RICETTA & E & 150.000 & L \\
+\hline
+\end{tabularx}
+\end{table}
+\textbf{Costo totale U8.2:} $310.000 \times 10 \mbox{ al giorno} = 3.100.000 \mbox{ accessi/giorno}$
+
+\vspace{1.5em}
+
+\noindent\textbf{Operazione U11}
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.2}
+\setlength{\tabcolsep}{8pt}
+\begin{tabularx}{\textwidth}{|X|c|r|c|}
+\hline
+\textbf{Concetto} & \textbf{Costrutto} & \textbf{Accessi} & \textbf{Tipo} \\
+\hline
+RICETTA & E & 1 & L \\
+\hline
+\end{tabularx}
+\end{table}
+\textbf{Costo totale U11:} $1 \times 1.500 \mbox{ al giorno} = 1.500 \mbox{ accessi/giorno}$
+
+\vspace{1.5em}
+
+\noindent\fbox{%
+\parbox{\dimexpr\textwidth-2\fboxsep-2\fboxrule\relax}{%
+\vspace{0.3em}
+\begin{itemize}[leftmargin=1cm, label=--]
+    \item \textbf{Costo totale senza ridondanza:} 4.758.131.900 accessi/giorno
+    \item \textbf{Costo totale con ridondanza:} 228.104.100 accessi/giorno
+\end{itemize}
+\textbf{Esito:} Si è deciso di \textbf{mantenere la ridondanza}.
+\vspace{0.3em}
+}%
+}
+
+\vspace{2em}
+\hrule
+\vspace{2em}
+
+\subsection{PrezzoRicetta}
+Nel nostro sistema, il prezzo di una ricetta è determinato come somma dei costi dei singoli ingredienti, valutandone le quantità.
+
+Si noti che la pubblicazione della ricetta (operazione \textbf{U6}) è irrilevante all’analisi della ridondanza poiché si suppone di avere già l’elenco di ingredienti al momento dell’effettiva pubblicazione.
+
+Per quello che riguarda l’analisi dell’operazione \textbf{U9} si è tenuto conto solamente del calcolo del costo delle ricette ordinate, poiché l’effettuazione dell’ordine e il calcolo dello sconto sono equivalenti in presenza o meno della ridondanza.
+
+L’operazione \textbf{U11} non viene analizzata per questa ridondanza poiché l’accesso agli ingredienti viene effettuato in ogni caso, indipendentemente dalla presenza dell’attributo ridondante o meno.
+
+\subsubsection*{SENZA RIDONDANZA}
+
+\noindent\textbf{Operazione U3.4}
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.2}
+\setlength{\tabcolsep}{8pt}
+\begin{tabularx}{\textwidth}{|X|c|r|c|}
+\hline
+\textbf{Concetto} & \textbf{Costrutto} & \textbf{Accessi} & \textbf{Tipo} \\
+\hline
+RICETTA & E & 150.000 & L \\
+\hline
+composizione & R & 1.500.000 & L \\
+\hline
+INGREDIENTE & E & 1.500.000 & L \\
+\hline
+\end{tabularx}
+\end{table}
+\textbf{Costo totale U3.4:} $3.150.000 \times 166 \mbox{ al giorno} = 522.900.000 \mbox{ accessi/giorno}$
+
+\vspace{1.5em}
+
+\noindent\textbf{Operazione U9}
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.2}
+\setlength{\tabcolsep}{8pt}
+\begin{tabularx}{\textwidth}{|X|c|r|c|}
+\hline
+\textbf{Concetto} & \textbf{Costrutto} & \textbf{Accessi} & \textbf{Tipo} \\
+\hline
+RICETTA & E & 600.000 / 300.000 = 2 & L \\
+\hline
+composizione & R & $2 \times (1.500.000 / 150.000) = 2 \times 10 = 20$ & L \\
+\hline
+INGREDIENTE & E & $2 \times 10 = 20$ & L \\
+\hline
+\end{tabularx}
+\end{table}
+\textbf{Costo totale U9:} $42 \times 100 \mbox{ al giorno} = 4.200 \mbox{ accessi/giorno}$
+
+\vspace{1.5em}
+
+\noindent\textbf{Operazione A2}
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.2}
+\setlength{\tabcolsep}{8pt}
+\begin{tabularx}{\textwidth}{|X|c|r|c|}
+\hline
+\textbf{Concetto} & \textbf{Costrutto} & \textbf{Accessi} & \textbf{Tipo} \\
+\hline
+INGREDIENTE & E & 1 & S \\
+\hline
+\end{tabularx}
+\end{table}
+\textbf{Costo totale A2:} $2 \times (5 / 7) \mbox{ al giorno} \approx 1,43 \mbox{ accessi/giorno}$
+
+\vspace{2em}
+
+\subsubsection*{CON RIDONDANZA}
+
+\noindent\textbf{Operazione U3.4}
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.2}
+\setlength{\tabcolsep}{8pt}
+\begin{tabularx}{\textwidth}{|X|c|r|c|}
+\hline
+\textbf{Concetto} & \textbf{Costrutto} & \textbf{Accessi} & \textbf{Tipo} \\
+\hline
+RICETTA & E & 150.000 & L \\
+\hline
+\end{tabularx}
+\end{table}
+\textbf{Costo totale U3.4:} $150.000 \times 166 \mbox{ al giorno} = 24.900.000 \mbox{ accessi/giorno}$
+
+\vspace{1.5em}
+
+\noindent\textbf{Operazione U9}
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.2}
+\setlength{\tabcolsep}{8pt}
+\begin{tabularx}{\textwidth}{|X|c|r|c|}
+\hline
+\textbf{Concetto} & \textbf{Costrutto} & \textbf{Accessi} & \textbf{Tipo} \\
+\hline
+RICETTA & E & 600.000 / 300.000 = 2 & L \\
+\hline
+\end{tabularx}
+\end{table}
+\textbf{Costo totale U9:} $2 \times 100 \mbox{ al giorno} = 200 \mbox{ accessi/giorno}$
+
+\vspace{1.5em}
+
+\noindent\textbf{Operazione A2}
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.2}
+\setlength{\tabcolsep}{8pt}
+\begin{tabularx}{\textwidth}{|X|c|r|c|}
+\hline
+\textbf{Concetto} & \textbf{Costrutto} & \textbf{Accessi} & \textbf{Tipo} \\
+\hline
+INGREDIENTE & E & 1 & S \\
+\hline
+composizione & R & 1.500.000 / 1.000 = 1.500 & L \\
+\hline
+RICETTA & E & 1.500 & S \\
+\hline
+\end{tabularx}
+\end{table}
+\textbf{Costo totale A2:} $4.501 \times (5 / 7) \mbox{ al giorno} \approx 3.215 \mbox{ accessi/giorno}$
+
+\vspace{1.5em}
+
+\noindent\fbox{%
+\parbox{\dimexpr\textwidth-2\fboxsep-2\fboxrule\relax}{%
+\vspace{0.3em}
+\begin{itemize}[leftmargin=1cm, label=--]
+    \item \textbf{Costo totale senza ridondanza:} 522.904.201,4 accessi/giorno
+    \item \textbf{Costo totale con ridondanza:} 24.903.415 accessi/giorno
+\end{itemize}
+\textbf{Esito:} Si è deciso di \textbf{mantenere la ridondanza}.
+\vspace{0.3em}
+}%
+}
+
+\vspace{2em}
+\hrule
+\vspace{2em}
+
+\subsection{NumeroIngredienti}
+Si è pensato ad un attributo ridondante in \textbf{RICETTA} per sapere immediatamente di quanti ingredienti si compone una ricetta: tale numero è infatti importante per determinare gli sconti applicabili.
+
+Si noti che la pubblicazione della ricetta (operazione \textbf{U6}) è irrilevante all’analisi della ridondanza poiché si suppone di avere già l’elenco di ingredienti al momento dell’effettiva pubblicazione.
+
+Per quello che riguarda l’analisi dell’operazione \textbf{U9} si è tenuto conto solamente del calcolo del numero di ingredienti delle ricette ordinate, poiché l’effettuazione dell’ordine e il calcolo dello sconto sono equivalenti in presenza o meno della ridondanza.
+
+\subsubsection*{SENZA RIDONDANZA}
+
+\noindent\textbf{Operazione U9}
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.2}
+\setlength{\tabcolsep}{8pt}
+\begin{tabularx}{\textwidth}{|X|c|r|c|}
+\hline
+\textbf{Concetto} & \textbf{Costrutto} & \textbf{Accessi} & \textbf{Tipo} \\
+\hline
+RICETTA & E & 600.000 / 300.000 = 2 & L \\
+\hline
+composizione & R & $2 \times (1.500.000 / 150.000) = 2 \times 10 = 20$ & L \\
+\hline
+\end{tabularx}
+\end{table}
+\textbf{Costo totale U9:} $22 \times 100 \mbox{ al giorno} = 2.200 \mbox{ accessi/giorno}$
+
+\vspace{2em}
+
+\subsubsection*{CON RIDONDANZA}
+
+\noindent\textbf{Operazione U9}
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.2}
+\setlength{\tabcolsep}{8pt}
+\begin{tabularx}{\textwidth}{|X|c|r|c|}
+\hline
+\textbf{Concetto} & \textbf{Costrutto} & \textbf{Accessi} & \textbf{Tipo} \\
+\hline
+RICETTA & E & 600.000 / 300.000 = 2 & L \\
+\hline
+\end{tabularx}
+\end{table}
+\textbf{Costo totale U9:} $2 \times 100 \mbox{ al giorno} = 200 \mbox{ accessi/giorno}$
+
+\vspace{1.5em}
+
+\noindent\fbox{%
+\parbox{\dimexpr\textwidth-2\fboxsep-2\fboxrule\relax}{%
+\vspace{0.3em}
+\begin{itemize}[leftmargin=1cm, label=--]
+    \item \textbf{Costo totale senza ridondanza:} 2.200 accessi/giorno
+    \item \textbf{Costo totale con ridondanza:} 200 accessi/giorno
+\end{itemize}
+\textbf{Esito:} Si è deciso di \textbf{mantenere la ridondanza}.
+\vspace{0.3em}
+}%
+}
+
+\vspace{3em}
+
+\section{Raffinamento dello schema}
+
+Nello schema E/R finale non compaiono gerarchie o attributi composti, per cui si procede direttamente con la scelta delle chiavi primarie e la traduzione delle associazioni.
+
+\begin{itemize}[leftmargin=0.8cm, itemsep=1em]
+
+    \item \textbf{Scelta delle chiavi primarie}
+    
+    Nello schema E/R proposto sono già evidenziate tutte le chiavi primarie. \\
+    Si è presentata la scelta di una chiave primaria alternativa per quanto riguarda l’entità \textbf{RICETTA}, ovvero l’unione di \textbf{CodiceUtente} e \textbf{Nome}. Si è scelto di mantenere come chiave primaria \textbf{CodiceRicetta}, data la semplicità di mantenimento. 
+    
+    La chiave alternativa avrebbe causato infatti ridondanze e criticità a livello di aggiornamento e di propagazione dello stesso. La coppia CodiceUtente - Nome verrà comunque mantenuta all'interno del nostro modello ed espressa tramite vincolo \texttt{UNIQUE} nelle implementazioni successive.
+
+    \item \textbf{Chiavi esterne}
+    
+    Le chiavi esterne utilizzate sono omonime alle chiavi primarie a cui fanno riferimento. Per cui, prendendo come riferimento lo schema E/R completo proposto in Figura~\ref{fig:conc_fin}, si procede con le seguenti rimozioni:
+
+    \begin{itemize}[label=$\circ$, leftmargin=0.8cm, itemsep=0.4em]
+        \item relazione ``offerta'' tra PROMOZIONE e SCONTO, con importazione della chiave esterna ``CodicePromo'' nell'entità SCONTO
+        \item relazione ``applicazione'' tra SCONTO e CATEGORIA, con importazione della chiave esterna ``CodiceCategoria'' nell'entità SCONTO
+        \item relazione ``richiesta'' tra UTENTE e ORDINE, con importazione della chiave esterna ``CodiceUtente'' nell'entità ORDINE
+        \item relazione ``pubblicazione'' tra UTENTE e RICETTA, con importazione della chiave esterna ``CodiceUtente'' nell'entità RICETTA
+    \end{itemize}
+
+\end{itemize}
+
+\vspace{3em}
+
+\section{Traduzione delle entità e associazioni in relazioni}
+\vspace{1em}
+
+\noindent\textbf{PROMOZIONI} (\underline{CodicePromo}, Nome, DataInizio, DataFine)
+
+\vspace{1em}
+
+\noindent\textbf{SCONTI} (\underline{CodicePromo}, \underline{CodiceCategoria}, \underline{MinIngredienti}, MaxIngredienti, PercentualeSconto) \\
+FK: CodicePromo REFERENCES \textbf{PROMOZIONI} \\
+FK: CodiceCategoria REFERENCES \textbf{CATEGORIE}
+
+\vspace{1em}
+
+\noindent\textbf{CATEGORIE} (\underline{CodiceCategoria}, Nome, Descrizione)
+
+\vspace{1em}
+
+\noindent\textbf{INGREDIENTI} (\underline{CodiceIngrediente}, Nome, Prezzo, Vegano)
+
+\vspace{1em}
+
+\noindent\textbf{UTENTI} (\underline{CodiceUtente}, Nome, Cognome, Email, Password, Ruolo, Attivo, IndirizzoSpedizione*)
+
+\vspace{1em}
+
+\noindent\textbf{ORDINI} (\underline{CodiceOrdine}, CodiceUtente, Data, Note) \\
+FK: CodiceUtente REFERENCES \textbf{UTENTI}
+
+\vspace{1em}
+
+\noindent\textbf{RECENSIONI} (\underline{CodiceUtente}, \underline{CodiceRicetta}, Data, Voto, Commento*) \\
+FK: CodiceUtente REFERENCES \textbf{UTENTI} \\
+FK: CodiceRicetta REFERENCES \textbf{RICETTE}
+
+\vspace{1em}
+
+\noindent\textbf{RICETTE} (\underline{CodiceRicetta}, CodiceUtente, Nome, Preparazione, TempoRichiesto, NumeroIngredienti, PrezzoRicetta, MediaRecensioni, Rimossa) \\
+FK: CodiceUtente REFERENCES \textbf{UTENTI} \\
+UNIQUE (CodiceUtente, Nome)
+
+\vspace{1em}
+
+\noindent\textbf{DETTAGLI\_ORDINE} (\underline{CodiceOrdine}, \underline{CodiceRicetta}, PrezzoUnitario, Quantità, ScontoApplicato) \\
+FK: CodiceOrdine REFERENCES \textbf{ORDINI} \\
+FK: CodiceRicetta REFERENCES \textbf{RICETTE}
+
+\vspace{1em}
+
+\noindent\textbf{DETTAGLI\_RICETTA} (\underline{CodiceRicetta}, \underline{CodiceIngrediente}, Quantità) \\
+FK: CodiceRicetta REFERENCES \textbf{RICETTE} \\
+FK: CodiceIngrediente REFERENCES \textbf{INGREDIENTI}
+
+\vspace{1em}
+
+\noindent\textbf{CLASSIFICAZIONI} (\underline{CodiceRicetta}, \underline{CodiceCategoria}) \\
+FK: CodiceRicetta REFERENCES \textbf{RICETTE} \\
+FK: CodiceCategoria REFERENCES \textbf{CATEGORIE}
