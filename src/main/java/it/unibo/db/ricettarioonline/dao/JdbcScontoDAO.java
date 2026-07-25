@@ -1,16 +1,11 @@
 package it.unibo.db.ricettarioonline.dao;
 
 import it.unibo.db.ricettarioonline.model.Sconto;
-import it.unibo.db.ricettarioonline.model.VantaggioAttivo;
-
 import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
 public class JdbcScontoDAO implements ScontoDAO {
 
@@ -43,7 +38,7 @@ public class JdbcScontoDAO implements ScontoDAO {
     }
 
     @Override
-    public BigDecimal findMigliorSconto(final Connection conn, final long codiceRicetta) throws SQLException {
+    public BigDecimal findMigliorSconto(final long codiceRicetta) throws SQLException {
         final String sql = "SELECT COALESCE(MAX(S.PercentualeSconto), 0) "
                 + "FROM RICETTE R "
                 + "LEFT JOIN CLASSIFICAZIONI CL ON CL.CodiceRicetta = R.CodiceRicetta "
@@ -55,7 +50,7 @@ public class JdbcScontoDAO implements ScontoDAO {
                 + "   AND CURRENT_DATE BETWEEN P.DataInizio AND P.DataFine "
                 + "WHERE R.CodiceRicetta = ?";
 
-        try (PreparedStatement ps = conn.prepareStatement(sql)) {
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
             ps.setLong(1, codiceRicetta);
 
             try (ResultSet rs = ps.executeQuery()) {
@@ -65,38 +60,5 @@ public class JdbcScontoDAO implements ScontoDAO {
                 return BigDecimal.ZERO;
             }
         }
-    }
-
-    @Override
-    public List<VantaggioAttivo> findAttivi() throws SQLException {
-        final String sql = "SELECT "
-                + "P.Nome AS NomePromo, P.DataInizio, P.DataFine, "
-                + "C.Nome AS NomeCategoria, "
-                + "S.MinIngredienti, S.MaxIngredienti, S.PercentualeSconto "
-                + "FROM SCONTI S "
-                + "JOIN PROMOZIONI P ON P.CodicePromo = S.CodicePromo "
-                + "JOIN CATEGORIE C ON C.CodiceCategoria = S.CodiceCategoria "
-                + "WHERE CURRENT_DATE BETWEEN P.DataInizio AND P.DataFine "
-                + "ORDER BY S.PercentualeSconto DESC";
-
-        final List<VantaggioAttivo> risultato = new ArrayList<>();
-
-        try (PreparedStatement ps = connection.prepareStatement(sql);
-             ResultSet rs = ps.executeQuery()) {
-
-            while (rs.next()) {
-                risultato.add(new VantaggioAttivo(
-                        rs.getString("NomePromo"),
-                        rs.getObject("DataInizio", LocalDate.class),
-                        rs.getObject("DataFine", LocalDate.class),
-                        rs.getString("NomeCategoria"),
-                        rs.getInt("MinIngredienti"),
-                        rs.getInt("MaxIngredienti"),
-                        rs.getBigDecimal("PercentualeSconto")
-                ));
-            }
-        }
-
-        return risultato;
     }
 }

@@ -19,6 +19,49 @@
 \usepackage{array}
 \usepackage{lineno} % Pacchetto per la numerazione automatica delle righe fisiche
 \usepackage{framed}
+\usepackage{listings}
+\usepackage{xcolor}
+
+% Colori esatti come nel tuo riferimento
+\definecolor{codegray}{rgb}{0.95,0.95,0.93}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{codeorange}{rgb}{0.9,0.4,0}
+\definecolor{numbergray}{rgb}{0.6,0.6,0.6}
+
+\lstdefinestyle{sqlstyle}{
+    language=SQL,
+    backgroundcolor=\color{codegray},
+    basicstyle=\fontfamily{pcr}\selectfont\small, % Forza font monospaziato (Courier/Monospace)
+    keywordstyle=\color{codepurple},
+    stringstyle=\color{codeorange},
+    commentstyle=\color{green!60!black},
+    numberstyle=\tiny\color{numbergray},
+    numbers=left,
+    numbersep=8pt,
+    breaklines=true,
+    breakatwhitespace=false,
+    keepspaces=true,
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    tabsize=2,
+    captionpos=b,
+    extendedchars=true,
+    literate=
+      {à}{{\`a}}1
+      {è}{{\`e}}1
+      {é}{{\'e}}1
+      {ì}{{\`i}}1
+      {ò}{{\`o}}1
+      {ù}{{\`u}}1
+      {À}{{\`A}}1
+      {È}{{\`E}}1
+      {Ì}{{\`I}}1
+      {Ò}{{\`O}}1
+      {Ù}{{\`U}}1
+}
+
+\lstset{style=sqlstyle}
 
 % 1. MARGINI RIDOTTI (sfrutta più spazio nella pagina)
 \usepackage[
@@ -82,7 +125,7 @@
 \input{1_Analisi}
 \input{2_Concettuale}
 \input{3_Logica}
-%\input{4_CommentiFinali}
+\input{4_SQL}
 
 %\appendix
 %\titleformat{\chapter}[display]

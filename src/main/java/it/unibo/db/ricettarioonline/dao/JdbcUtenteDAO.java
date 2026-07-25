@@ -1,14 +1,11 @@
 package it.unibo.db.ricettarioonline.dao;
 
 import it.unibo.db.ricettarioonline.model.Utente;
-import it.unibo.db.ricettarioonline.model.UtenteConRating;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -64,41 +61,7 @@ public class JdbcUtenteDAO implements UtenteDAO {
     }
 
     @Override
-    public List<UtenteConRating> findMigliori(final int limit) throws SQLException {
-        final String sql = "SELECT "
-                + "U.CodiceUtente, U.Nome, U.Cognome, "
-                + "AVG(R.MediaRecensioni) AS RatingUtente, "
-                + "COUNT(R.CodiceRicetta) AS NumeroRicette "
-                + "FROM UTENTI U "
-                + "JOIN RICETTE R ON R.CodiceUtente = U.CodiceUtente "
-                + "WHERE R.Rimossa = FALSE AND U.Attivo = TRUE "
-                + "GROUP BY U.CodiceUtente, U.Nome, U.Cognome "
-                + "ORDER BY RatingUtente DESC "
-                + "LIMIT ?";
-
-        final List<UtenteConRating> risultato = new ArrayList<>();
-
-        try (PreparedStatement ps = connection.prepareStatement(sql)) {
-            ps.setInt(1, limit);
-
-            try (ResultSet rs = ps.executeQuery()) {
-                while (rs.next()) {
-                    risultato.add(new UtenteConRating(
-                            rs.getLong("CodiceUtente"),
-                            rs.getString("Nome"),
-                            rs.getString("Cognome"),
-                            rs.getBigDecimal("RatingUtente"),
-                            rs.getInt("NumeroRicette")
-                    ));
-                }
-            }
-        }
-
-        return risultato;
-    }
-
-    @Override
-    public void disattivaBatch(final Connection conn, final List<Long> codiciUtente) throws SQLException {
+    public void disattivaBatch(final List<Long> codiciUtente) throws SQLException {
         if (codiciUtente.isEmpty()) {
             return; // niente da fare, evitiamo una IN () invalida
         }
@@ -113,7 +76,7 @@ public class JdbcUtenteDAO implements UtenteDAO {
         final String sql = "UPDATE UTENTI SET Attivo = FALSE "
                 + "WHERE CodiceUtente IN (" + placeholders + ")";
 
-        try (PreparedStatement ps = conn.prepareStatement(sql)) {
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
             for (int i = 0; i < codiciUtente.size(); i++) {
                 ps.setLong(i + 1, codiciUtente.get(i));
             }
