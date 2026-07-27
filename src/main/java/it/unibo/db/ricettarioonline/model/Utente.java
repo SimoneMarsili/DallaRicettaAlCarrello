@@ -2,24 +2,16 @@ package it.unibo.db.ricettarioonline.model;
 
 public class Utente {
 
-    private final Long codiceUtente; // null finché non è stato salvato nel DB
+    private final long codiceUtente;
     private final String nome;
     private final String cognome;
     private final String email;
-    private final String password; // hash, mai in chiaro
+    private final String password; // hash SHA2, letto dal DB - mai testo in chiaro
     private final String ruolo;
     private final boolean attivo;
     private final String indirizzoSpedizione; // può essere null (es. ADMIN)
 
-    // Costruttore per un utente NUOVO (U1): Ruolo e Attivo sono fissati dalla
-    // query stessa ('UTENTE', TRUE), quindi non li chiediamo qui.
-    public Utente(final String nome, final String cognome, final String email,
-                  final String password, final String indirizzoSpedizione) {
-        this(null, nome, cognome, email, password, "UTENTE", true, indirizzoSpedizione);
-    }
-
-    // Costruttore completo, usato quando leggiamo una riga già esistente nel DB.
-    public Utente(final Long codiceUtente, final String nome, final String cognome,
+    public Utente(final long codiceUtente, final String nome, final String cognome,
                   final String email, final String password, final String ruolo,
                   final boolean attivo, final String indirizzoSpedizione) {
         this.codiceUtente = codiceUtente;
@@ -32,7 +24,7 @@ public class Utente {
         this.indirizzoSpedizione = indirizzoSpedizione;
     }
 
-    public Long getCodiceUtente() {
+    public long getCodiceUtente() {
         return codiceUtente;
     }
 

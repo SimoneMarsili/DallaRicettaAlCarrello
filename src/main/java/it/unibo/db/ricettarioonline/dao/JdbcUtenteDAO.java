@@ -1,6 +1,7 @@
 package it.unibo.db.ricettarioonline.dao;
 
 import it.unibo.db.ricettarioonline.model.Utente;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -19,17 +20,19 @@ public class JdbcUtenteDAO implements UtenteDAO {
     }
 
     @Override
-    public long insert(final Utente utente) throws SQLException {
+    public long registra(final String nome, final String cognome, final String email,
+            final String passwordChiara, final String indirizzoSpedizione) throws SQLException {
+
         final String sql = "INSERT INTO UTENTI "
                 + "(Nome, Cognome, Email, Password, Ruolo, Attivo, IndirizzoSpedizione) "
-                + "VALUES (?, ?, ?, ?, 'UTENTE', TRUE, ?)";
+                + "VALUES (?, ?, ?, SHA2(?, 512), 'UTENTE', TRUE, ?)";
 
         try (PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
-            ps.setString(1, utente.getNome());
-            ps.setString(2, utente.getCognome());
-            ps.setString(3, utente.getEmail());
-            ps.setString(4, utente.getPassword());
-            ps.setString(5, utente.getIndirizzoSpedizione());
+            ps.setString(1, nome);
+            ps.setString(2, cognome);
+            ps.setString(3, email);
+            ps.setString(4, passwordChiara); // MySQL calcola SHA2(...) al volo, mai in chiaro nel DB
+            ps.setString(5, indirizzoSpedizione);
 
             ps.executeUpdate();
 
@@ -43,13 +46,14 @@ public class JdbcUtenteDAO implements UtenteDAO {
     }
 
     @Override
-    public Optional<Utente> findByEmail(final String email) throws SQLException {
+    public Optional<Utente> login(final String email, final String passwordChiara) throws SQLException {
         final String sql = "SELECT CodiceUtente, Nome, Cognome, Email, Password, Ruolo, "
                 + "Attivo, IndirizzoSpedizione "
-                + "FROM UTENTI WHERE Email = ?";
+                + "FROM UTENTI WHERE Email = ? AND Password = SHA2(?, 512)";
 
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
             ps.setString(1, email);
+            ps.setString(2, passwordChiara);
 
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
@@ -63,12 +67,9 @@ public class JdbcUtenteDAO implements UtenteDAO {
     @Override
     public void disattivaBatch(final List<Long> codiciUtente) throws SQLException {
         if (codiciUtente.isEmpty()) {
-            return; // niente da fare, evitiamo una IN () invalida
+            return;
         }
 
-        // Costruiamo dinamicamente i placeholder "?, ?, ?, ..." in base alla
-        // dimensione della lista, perché JDBC non supporta direttamente il
-        // passaggio di una List come singolo parametro di un IN (...).
         final String placeholders = codiciUtente.stream()
                 .map(id -> "?")
                 .collect(Collectors.joining(", "));
@@ -84,9 +85,6 @@ public class JdbcUtenteDAO implements UtenteDAO {
         }
     }
 
-    // Metodo privato di mapping: evita di duplicare la stessa logica di
-    // costruzione dell'oggetto Utente se in futuro aggiungessimo altri metodi
-    // di lettura (es. findById).
     private Utente mapUtente(final ResultSet rs) throws SQLException {
         return new Utente(
                 rs.getLong("CodiceUtente"),

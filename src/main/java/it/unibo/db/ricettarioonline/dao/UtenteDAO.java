@@ -7,15 +7,16 @@ import java.util.Optional;
 
 public interface UtenteDAO {
 
-    // U1 - Registrazione utente. Ritorna il codice generato dal DB.
-    long insert(Utente utente) throws SQLException;
+    // U1 - Registrazione utente. La password arriva in chiaro: l'hashing
+    // (SHA2) viene fatto lato SQL, mai calcolato in Java. Ritorna il codice
+    // generato dal DB.
+    long registra(String nome, String cognome, String email, String passwordChiara,
+            String indirizzoSpedizione) throws SQLException;
 
-    // Login (non è un codice ufficiale della specifica, ma necessario all'applicativo):
-    // recupera l'utente dalla sua email per verificarne la password.
-    Optional<Utente> findByEmail(String email) throws SQLException;
+    // Login: ricerca per email e verifica password in un solo passaggio
+    // (confronto SHA2 fatto direttamente dal DB, non in Java).
+    Optional<Utente> login(String email, String passwordChiara) throws SQLException;
 
     // A6 (step 2) - Disattivazione logica di un gruppo di utenti.
-    // Riceve la Connection dal chiamante perché fa parte della stessa transazione
-    // che poi rimuove anche le loro ricette (RicettaDAO.rimuoviBatch).
     void disattivaBatch(List<Long> codiciUtente) throws SQLException;
 }

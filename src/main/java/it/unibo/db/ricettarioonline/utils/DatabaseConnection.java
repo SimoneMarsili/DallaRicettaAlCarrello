@@ -10,12 +10,12 @@ public final class DatabaseConnection {
             "jdbc:mysql://localhost:3306/RicettarioOnline"
             + "?serverTimezone=Europe/Rome";
     private static final String DEFAULT_USER = "root";
-    private static final String DEFAULT_PASSWORD = "";
+    private static final String DEFAULT_PASSWORD = "Sqlmaster123.";
 
     private DatabaseConnection() {
     }
 
-     public static Connection getConnection() throws SQLException {
+    public static Connection getConnection() throws SQLException {
 
         loadDriverIfPresent();
 
