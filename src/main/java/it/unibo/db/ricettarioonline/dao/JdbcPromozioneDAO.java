@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
+import java.util.List;
 
 import it.unibo.db.ricettarioonline.model.Promozione;
 
@@ -34,5 +36,24 @@ public class JdbcPromozioneDAO implements PromozioneDAO {
                 throw new SQLException("Inserimento promozione fallito: nessuna chiave generata");
             }
         }
+    }
+
+    @Override
+    public List<Promozione> findAll() throws SQLException {
+        final String sql = "SELECT CodicePromo, Nome, DataInizio, DataFine FROM PROMOZIONI ORDER BY DataInizio DESC";
+        final List<Promozione> risultato = new java.util.ArrayList<>();
+
+        try (PreparedStatement ps = connection.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery()) {
+            while (rs.next()) {
+                risultato.add(new Promozione(
+                        rs.getLong("CodicePromo"),
+                        rs.getString("Nome"),
+                        rs.getObject("DataInizio", LocalDate.class),
+                        rs.getObject("DataFine", LocalDate.class)
+                ));
+            }
+        }
+        return risultato;
     }
 }

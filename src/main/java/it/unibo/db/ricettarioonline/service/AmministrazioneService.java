@@ -13,8 +13,11 @@ import it.unibo.db.ricettarioonline.dao.RicettaDAO;
 import it.unibo.db.ricettarioonline.dao.ScontoDAO;
 import it.unibo.db.ricettarioonline.dao.UtenteDAO;
 import it.unibo.db.ricettarioonline.model.Categoria;
+import it.unibo.db.ricettarioonline.model.FatturatoGiornaliero;
+import it.unibo.db.ricettarioonline.model.FatturatoRicetta;
 import it.unibo.db.ricettarioonline.model.Ingrediente;
 import it.unibo.db.ricettarioonline.model.Promozione;
+import it.unibo.db.ricettarioonline.model.RecensioneNegativa;
 import it.unibo.db.ricettarioonline.model.Sconto;
 import it.unibo.db.ricettarioonline.utils.DatabaseConnection;
 
@@ -145,6 +148,87 @@ public class AmministrazioneService {
             }
         }
 
+        return risultato;
+    }
+
+
+    // Supporto ad A5 - Elenco promozioni esistenti, per il selettore nel form.
+    public List<Promozione> elencaPromozioni() throws SQLException {
+        try (Connection connection = DatabaseConnection.getConnection()) {
+            final PromozioneDAO promozioneDAO = new JdbcPromozioneDAO(connection);
+            return promozioneDAO.findAll();
+        }
+    }
+
+    // Vista v_fatturato_giornaliero - SQL diretto, come per i report U8.x:
+    // legge direttamente dalla vista definita nello schema fisico.
+    public List<FatturatoGiornaliero> fatturatoGiornaliero() throws SQLException {
+        final String sql = "SELECT Data, NumeroOrdini, QuantitaTotaleVenduta, IncassoTotale "
+                + "FROM v_fatturato_giornaliero";
+
+        final List<FatturatoGiornaliero> risultato = new java.util.ArrayList<>();
+        try (Connection connection = DatabaseConnection.getConnection();
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery()) {
+
+            while (rs.next()) {
+                risultato.add(new FatturatoGiornaliero(
+                        rs.getObject("Data", LocalDate.class),
+                        rs.getInt("NumeroOrdini"),
+                        rs.getLong("QuantitaTotaleVenduta"),
+                        rs.getBigDecimal("IncassoTotale")
+                ));
+            }
+        }
+        return risultato;
+    }
+
+    // Vista v_fatturato_per_ricetta.
+    public List<FatturatoRicetta> fatturatoPerRicetta() throws SQLException {
+        final String sql = "SELECT CodiceRicetta, NomeRicetta, NumeroOrdini, QuantitaTotaleVenduta, IncassoTotale "
+                + "FROM v_fatturato_per_ricetta";
+
+        final List<FatturatoRicetta> risultato = new java.util.ArrayList<>();
+        try (Connection connection = DatabaseConnection.getConnection();
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery()) {
+
+            while (rs.next()) {
+                risultato.add(new FatturatoRicetta(
+                        rs.getLong("CodiceRicetta"),
+                        rs.getString("NomeRicetta"),
+                        rs.getInt("NumeroOrdini"),
+                        rs.getLong("QuantitaTotaleVenduta"),
+                        rs.getBigDecimal("IncassoTotale")
+                ));
+            }
+        }
+        return risultato;
+    }
+
+    // Vista v_recensioni_negative_recenti.
+    public List<RecensioneNegativa> recensioniNegativeRecenti() throws SQLException {
+        final String sql = "SELECT CodiceRicetta, NomeRicetta, CodiceUtente, NomeUtente, CognomeUtente, "
+                + "Voto, Commento, Data FROM v_recensioni_negative_recenti";
+
+        final List<RecensioneNegativa> risultato = new java.util.ArrayList<>();
+        try (Connection connection = DatabaseConnection.getConnection();
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery()) {
+
+            while (rs.next()) {
+                risultato.add(new RecensioneNegativa(
+                        rs.getLong("CodiceRicetta"),
+                        rs.getString("NomeRicetta"),
+                        rs.getLong("CodiceUtente"),
+                        rs.getString("NomeUtente"),
+                        rs.getString("CognomeUtente"),
+                        rs.getInt("Voto"),
+                        rs.getString("Commento"),
+                        rs.getObject("Data", LocalDate.class)
+                ));
+            }
+        }
         return risultato;
     }
 }

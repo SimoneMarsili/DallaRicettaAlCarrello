@@ -1,7 +1,10 @@
 package it.unibo.db.ricettarioonline.service;
 
+import it.unibo.db.ricettarioonline.dao.CategoriaDAO;
 import it.unibo.db.ricettarioonline.dao.IngredienteDAO;
+import it.unibo.db.ricettarioonline.dao.JdbcCategoriaDAO;
 import it.unibo.db.ricettarioonline.dao.JdbcIngredienteDAO;
+import it.unibo.db.ricettarioonline.model.Categoria;
 import it.unibo.db.ricettarioonline.model.Ingrediente;
 import it.unibo.db.ricettarioonline.model.VantaggioAttivo;
 import it.unibo.db.ricettarioonline.utils.DatabaseConnection;
@@ -22,6 +25,14 @@ public class CatalogoService {
         try (Connection connection = DatabaseConnection.getConnection()) {
             final IngredienteDAO ingredienteDAO = new JdbcIngredienteDAO(connection);
             return ingredienteDAO.findAll();
+        }
+    }
+
+    // Supporto a U6 - Elenco categorie disponibili per la selezione.
+    public List<Categoria> elencaCategorie() throws SQLException {
+        try (Connection connection = DatabaseConnection.getConnection()) {
+            final CategoriaDAO categoriaDAO = new JdbcCategoriaDAO(connection);
+            return categoriaDAO.findAll();
         }
     }
 

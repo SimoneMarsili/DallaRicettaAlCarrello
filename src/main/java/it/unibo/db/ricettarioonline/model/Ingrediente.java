@@ -39,4 +39,9 @@ public class Ingrediente {
     public boolean isVegano() {
         return vegano;
     }
+
+    @Override
+    public String toString() {
+        return nome;
+    }
 }

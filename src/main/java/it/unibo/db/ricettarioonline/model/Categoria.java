@@ -30,4 +30,9 @@ public class Categoria {
     public String getDescrizione() {
         return descrizione;
     }
+
+    @Override
+    public String toString() {
+        return nome;
+    }
 }

@@ -38,4 +38,9 @@ public class Promozione {
     public LocalDate getDataFine() {
         return dataFine;
     }
+
+    @Override
+    public String toString() {
+        return nome + " (" + dataInizio + " – " + dataFine + ")";
+    }
 }
