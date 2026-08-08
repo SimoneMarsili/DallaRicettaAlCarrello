@@ -2,13 +2,127 @@
 
 \section{Creazione delle tabelle}
 
+\vspace{2em}
+\textbf{UTENTI}
+
 \lstinputlisting[
     language=SQL, 
-    firstline=15, 
+    firstline=19, 
+    lastline=31, 
+    firstnumber=1, 
+    caption={Creazione della tabella UTENTI.}
+]{sql/creazione_db.sql}
+
+\vspace{2em}
+\textbf{CATEGORIE}
+
+\lstinputlisting[
+    language=SQL, 
+    firstline=33, 
+    lastline=39, 
+    firstnumber=1, 
+    caption={Creazione della tabella CATEGORIE.}
+]{sql/creazione_db.sql}
+
+\vspace{2em}
+\textbf{INGREDIENTI}
+
+\lstinputlisting[
+    language=SQL, 
+    firstline=41, 
+    lastline=49, 
+    firstnumber=1, 
+    caption={Creazione della tabella INGREDIENTI.}
+]{sql/creazione_db.sql}
+
+\vspace{2em}
+\textbf{PROMOZIONI}
+
+\lstinputlisting[
+    language=SQL, 
+    firstline=51, 
+    lastline=58, 
+    firstnumber=1, 
+    caption={Creazione della tabella PROMOZIONI.}
+]{sql/creazione_db.sql}
+
+\vspace{2em}
+\textbf{RICETTE}
+
+\lstinputlisting[
+    language=SQL, 
+    firstline=60, 
+    lastline=81, 
+    firstnumber=1, 
+    caption={Creazione della tabella RICETTE.}
+]{sql/creazione_db.sql}
+
+\vspace{2em}
+\textbf{ORDINI}
+
+\lstinputlisting[
+    language=SQL, 
+    firstline=83, 
+    lastline=94, 
+    firstnumber=1, 
+    caption={Creazione della tabella ORDINI.}
+]{sql/creazione_db.sql}
+
+\vspace{2em}
+\textbf{CLASSIFICAZIONI}
+
+\lstinputlisting[
+    language=SQL, 
+    firstline=96, 
+    lastline=110, 
+    firstnumber=1, 
+    caption={Creazione della tabella CLASSIFICAZIONI.}
+]{sql/creazione_db.sql}
+
+\vspace{2em}
+\textbf{DETTAGLI\_RICETTA}
+
+\lstinputlisting[
+    language=SQL, 
+    firstline=112, 
+    lastline=128, 
+    firstnumber=1, 
+    caption={Creazione della tabella DETTAGLI\_RICETTA.}
+]{sql/creazione_db.sql}
+
+\vspace{2em}
+\textbf{DETTAGLI\_ORDINE}
+
+\lstinputlisting[
+    language=SQL, 
+    firstline=130, 
+    lastline=150, 
+    firstnumber=1, 
+    caption={Creazione della tabella DETTAGLI\_ORDINE.}
+]{sql/creazione_db.sql}
+
+\vspace{2em}
+\textbf{SCONTI}
+
+\lstinputlisting[
+    language=SQL, 
+    firstline=152, 
+    lastline=171, 
+    firstnumber=1, 
+    caption={Creazione della tabella SCONTI.}
+]{sql/creazione_db.sql}
+
+\vspace{2em}
+\textbf{RECENSIONI}
+
+\lstinputlisting[
+    language=SQL, 
+    firstline=173, 
     lastline=191, 
     firstnumber=1, 
-    caption={Creazione delle tabelle del DB.}
+    caption={Creazione della tabella RECENSIONI.}
 ]{sql/creazione_db.sql}
+\vspace{1em}
 
 \section{Indici}
 
@@ -19,23 +133,140 @@
     firstnumber=1, 
     caption={Indici principali dello schema.}
 ]{sql/creazione_db.sql}
+\vspace{1em}
 
 \section{Trigger}
 
+\vspace{2em}
+\textbf{Trigger per INSERT su SCONTI}
+
+Impedisce l'inserimento se esiste già uno sconto con stessa promozione, stessa categoria e range di ingredienti sovrapposto con quello desiderato.
+
 \lstinputlisting[
     language=SQL, 
-    firstline=213, 
-    lastline=356, 
+    firstline=217, 
+    lastline=234, 
     firstnumber=1, 
-    caption={Trigger dello schema.}
+    caption={Trigger per INSERT su SCONTI.}
 ]{sql/creazione_db.sql}
+
+\vspace{3em}
+\textbf{Trigger per UPDATE su SCONTI}
+
+Impedisce l'aggiornamento se esiste già uno sconto con stessa promozione, stessa categoria e range di ingredienti sovrapposto con quello desiderato.
+
+\lstinputlisting[
+    language=SQL, 
+    firstline=239, 
+    lastline=258, 
+    firstnumber=1, 
+    caption={Trigger per UPDATE su SCONTI.}
+]{sql/creazione_db.sql}
+
+\vspace{3em}
+\textbf{Trigger per INSERT su RECENSIONI}
+
+Ricalcola e aggiorna la MediaRecensioni della ricetta appena recensita.
+
+\lstinputlisting[
+    language=SQL, 
+    firstline=263, 
+    lastline=274, 
+    firstnumber=1, 
+    caption={Trigger per INSERT su RECENSIONI.}
+]{sql/creazione_db.sql}
+
+\vspace{3em}
+\textbf{Trigger per DELETE su RECENSIONI}
+
+Ricalcola e aggiorna la MediaRecensioni della ricetta a cui la recensione eliminata faceva riferimento.
+
+\lstinputlisting[
+    language=SQL, 
+    firstline=279, 
+    lastline=289, 
+    firstnumber=1, 
+    caption={Trigger per DELETE su RECENSIONI.}
+]{sql/creazione_db.sql}
+
+\vspace{3em}
+\textbf{Trigger per UPDATE su INGREDIENTI}
+
+Ricalcola e aggiorna il prezzo di tutte le ricette che contengono l'ingrediente aggiornato (solo se è cambiato il prezzo di quest'ultimo).
+
+\lstinputlisting[
+    language=SQL, 
+    firstline=294, 
+    lastline=312, 
+    firstnumber=1, 
+    caption={Trigger per UPDATE su INGREDIENTI.}
+]{sql/creazione_db.sql}
+
+\vspace{3em}
+\textbf{Trigger per INSERT su DETTAGLI\_RICETTA}
+
+Ricalcola e aggiorna il NumeroIngredienti e il Prezzo della ricetta corrispondente.
+
+\lstinputlisting[
+    language=SQL, 
+    firstline=318, 
+    lastline=335, 
+    firstnumber=1, 
+    caption={Trigger per INSERT su DETTAGLI\_RICETTA.}
+]{sql/creazione_db.sql}
+
+\vspace{3em}
+\textbf{Trigger per INSERT su ORDINI}
+
+Impedisce l'inserimento se l'utente corrispondente non ha un IndirizzoSpedizione associato.
+
+\lstinputlisting[
+    language=SQL, 
+    firstline=340, 
+    lastline=354, 
+    firstnumber=1, 
+    caption={Trigger per INSERT su ORDINI.}
+]{sql/creazione_db.sql}
+\vspace{1em}
 
 \section{Viste}
 
+\vspace{1em}
+\textbf{Fatturato giornaliero}
+
+Per ogni giorno in cui sono stati effettuati ordini, mostra numero di ordini, quantita' totale venduta e incasso totale (tenendo conto degli sconti effettivamente applicati in fase d'ordine
+
 \lstinputlisting[
     language=SQL, 
-    firstline=362, 
+    firstline=365, 
+    lastline=376, 
+    firstnumber=1, 
+    caption={Vista per il fatturato giornaliero.}
+]{sql/creazione_db.sql}
+
+\vspace{2em}
+\textbf{Fatturato per ricetta}
+
+Per ogni ricetta, quantita' totale ordinata, numero di ordini distinti in cui compare e incasso generato.
+Utile per capire quali ricette "trainano" le vendite.
+
+\lstinputlisting[
+    language=SQL, 
+    firstline=382, 
+    lastline=394, 
+    firstnumber=1, 
+    caption={Vista per il fatturato per ricetta.}
+]{sql/creazione_db.sql}
+
+\vspace{2em}
+\textbf{Recensioni negative}
+
+Recensioni negative recenti (voto <= 3) delle ultime 2 settimane: utile per moderazione rapida o per contattare l'autore della ricetta.
+
+\lstinputlisting[
+    language=SQL, 
+    firstline=400, 
     lastline=415, 
     firstnumber=1, 
-    caption={Viste per l'amministratore.}
+    caption={Vista per le recensioni negative.}
 ]{sql/creazione_db.sql}

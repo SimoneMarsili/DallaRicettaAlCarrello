@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.5.18)  24 JUL 2026 17:44
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.5.18)  8 AUG 2026 18:44
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -874,8 +874,8 @@ Package pdftex.def Info: images/rel_fin.png  used on input line 1189.
 (pdftex.def)             Requested size: 455.24411pt x 235.22963pt.
 ) (4_SQL.tex [30 <./images/rel_fin.png>]
 Capitolo 4.
-Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on input line 11.
-LaTeX Font Info:    Trying to load font information for T1+pcr on input line 11.
+Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on input line 14.
+LaTeX Font Info:    Trying to load font information for T1+pcr on input line 14.
 (C:\Users\Dell\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\t1pcr.fd
 File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
 )
@@ -883,10 +883,10 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `pcr' (encoding: T1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
- (sql/creazione_db.sql [31
+ (sql/creazione_db.sql) (sql/creazione_db.sql) (sql/creazione_db.sql) [31
 
-{C:/Users/Dell/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc}] [32] [33]) (sql/creazione_db.sql) [34] (sql/creazione_db.sql
-LaTeX Font Info:    Trying to load font information for TS1+pcr on input line 214.
+{C:/Users/Dell/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc}] (sql/creazione_db.sql) (sql/creazione_db.sql) (sql/creazione_db.sql [32]) (sql/creazione_db.sql) (sql/creazione_db.sql) (sql/creazione_db.sql [33]) (sql/creazione_db.sql) [34] (sql/creazione_db.sql) (sql/creazione_db.sql) (sql/creazione_db.sql [35]
+LaTeX Font Info:    Trying to load font information for TS1+pcr on input line 223.
  (C:\Users\Dell\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\ts1pcr.fd
 File: ts1pcr.fd 2001/06/04 font definitions for TS1/pcr.
 )
@@ -894,7 +894,7 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `pcr' (encoding: TS1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
- [35] [36]) [37] (sql/creazione_db.sql [38])) [39] (main.aux)
+) (sql/creazione_db.sql) [36] (sql/creazione_db.sql) (sql/creazione_db.sql) (sql/creazione_db.sql [37]) (sql/creazione_db.sql) (sql/creazione_db.sql [38]) (sql/creazione_db.sql) (sql/creazione_db.sql [39]) (sql/creazione_db.sql)) [40] (main.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2025-12-24>
@@ -907,17 +907,17 @@ Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: 5136F317054A9FDDAFEE93921C0A37D6;4933.
  ) 
 Here is how much of TeX's memory you used:
- 19230 strings out of 467871
- 309386 string characters out of 5418860
- 1171473 words of memory out of 5000000
- 47116 multiletter control sequences out of 15000+600000
- 696938 words of font info for 165 fonts, out of 8000000 for 9000
+ 19222 strings out of 467871
+ 310067 string characters out of 5418860
+ 1124472 words of memory out of 5000000
+ 47109 multiletter control sequences out of 15000+600000
+ 697029 words of font info for 166 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 69i,11n,79p,1236b,2328s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 69i,11n,79p,1236b,2109s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/Dell/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx10.pfb><C:/Users/Dell/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx12.pfb><C:/Users/Dell/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbxi10.pfb><C:/Users/Dell/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi12.pfb><C:/Users/Dell/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr10.pfb><C:/Users/Dell/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr12.pfb><C:/Users/Dell/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr17.pfb><C:/Users/Dell/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr6.pfb><C:/Users/Dell/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmri12.pfb><C:/Users/Dell/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy10.pfb><C:/Users/Dell/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtt12.pfb><C:/Users/Dell/AppData/Local/Programs/MiKTeX/fonts/type1/urw/courier/ucrr8a.pfb>
-Output written on main.pdf (41 pages, 853163 bytes).
+Output written on main.pdf (42 pages, 849246 bytes).
 PDF statistics:
- 1050 PDF objects out of 1200 (max. 8388607)
- 544 named destinations out of 1000 (max. 500000)
+ 1007 PDF objects out of 1200 (max. 8388607)
+ 505 named destinations out of 1000 (max. 500000)
  42824 words of extra memory for PDF output out of 42996 (max. 10000000)
 

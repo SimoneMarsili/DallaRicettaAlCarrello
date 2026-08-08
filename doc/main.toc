@@ -26,6 +26,6 @@
 \contentsline {section}{\numberline {3.7}Schema relazionale finale}{30}{section.3.7}%
 \contentsline {chapter}{\numberline {4}Implementazione SQL}{31}{chapter.4}%
 \contentsline {section}{\numberline {4.1}Creazione delle tabelle}{31}{section.4.1}%
-\contentsline {section}{\numberline {4.2}Indici}{34}{section.4.2}%
+\contentsline {section}{\numberline {4.2}Indici}{35}{section.4.2}%
 \contentsline {section}{\numberline {4.3}Trigger}{35}{section.4.3}%
-\contentsline {section}{\numberline {4.4}Viste}{38}{section.4.4}%
+\contentsline {section}{\numberline {4.4}Viste}{39}{section.4.4}%
