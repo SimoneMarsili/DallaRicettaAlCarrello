@@ -1,5 +1,6 @@
 package it.unibo.db.ricettarioonline.controller;
 
+import it.unibo.db.ricettarioonline.exception.AccountDisattivatoException;
 import it.unibo.db.ricettarioonline.model.Utente;
 import it.unibo.db.ricettarioonline.service.AutenticazioneService;
 
@@ -12,7 +13,8 @@ public class LoginController {
 
     private final AutenticazioneService autenticazioneService = new AutenticazioneService();
 
-    public Optional<Utente> login(final String email, final String passwordChiara) throws SQLException {
+    public Optional<Utente> login(final String email, final String passwordChiara)
+            throws SQLException, AccountDisattivatoException {
         return autenticazioneService.login(email, passwordChiara);
     }
 

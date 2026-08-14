@@ -7,6 +7,7 @@ import it.unibo.db.ricettarioonline.view.carrello.CarrelloPanel;
 import it.unibo.db.ricettarioonline.view.carrello.StoricoOrdiniPanel;
 import it.unibo.db.ricettarioonline.view.catalogo.CatalogoPanel;
 import it.unibo.db.ricettarioonline.view.catalogo.PubblicaRicettaPanel;
+import it.unibo.db.ricettarioonline.view.catalogo.VantaggiPanel;
 import it.unibo.db.ricettarioonline.view.report.ClassifichePanel;
 import it.unibo.db.ricettarioonline.view.theme.AppTheme;
 
@@ -36,6 +37,7 @@ public class ShellPanel extends JPanel {
 
     private static final String CARD_CATALOGO = "CARD_CATALOGO";
     private static final String CARD_PUBBLICA_RICETTA = "CARD_PUBBLICA_RICETTA";
+    private static final String CARD_VANTAGGI = "CARD_VANTAGGI";
     private static final String CARD_CARRELLO = "CARD_CARRELLO";
     private static final String CARD_STORICO = "CARD_STORICO";
     private static final String CARD_CLASSIFICHE = "CARD_CLASSIFICHE";
@@ -78,6 +80,7 @@ public class ShellPanel extends JPanel {
 
         sidebar.add(creaBottoneMenu("Catalogo ricette", CARD_CATALOGO));
         sidebar.add(creaBottoneMenu("Pubblica ricetta", CARD_PUBBLICA_RICETTA));
+        sidebar.add(creaBottoneMenu("Vantaggi attivi", CARD_VANTAGGI)); 
         sidebar.add(creaBottoneMenu("Carrello", CARD_CARRELLO));
         sidebar.add(creaBottoneMenu("Storico ordini", CARD_STORICO));
         sidebar.add(creaBottoneMenu("Classifiche", CARD_CLASSIFICHE));
@@ -175,6 +178,7 @@ public class ShellPanel extends JPanel {
 
         contentPanel.add(new CatalogoPanel(utente, carrello), CARD_CATALOGO);
         contentPanel.add(new PubblicaRicettaPanel(utente), CARD_PUBBLICA_RICETTA);
+        contentPanel.add(new VantaggiPanel(), CARD_VANTAGGI);
         contentPanel.add(new CarrelloPanel(utente, carrello), CARD_CARRELLO);
         contentPanel.add(new StoricoOrdiniPanel(utente), CARD_STORICO);
         contentPanel.add(new ClassifichePanel(utente, carrello), CARD_CLASSIFICHE);

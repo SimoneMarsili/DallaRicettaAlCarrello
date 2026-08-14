@@ -2,6 +2,7 @@ package it.unibo.db.ricettarioonline.service;
 
 import it.unibo.db.ricettarioonline.dao.JdbcUtenteDAO;
 import it.unibo.db.ricettarioonline.dao.UtenteDAO;
+import it.unibo.db.ricettarioonline.exception.AccountDisattivatoException;
 import it.unibo.db.ricettarioonline.model.Utente;
 import it.unibo.db.ricettarioonline.utils.DatabaseConnection;
 import java.sql.Connection;
@@ -21,12 +22,22 @@ public class AutenticazioneService {
     }
 
     // Login: ricerca + verifica password in un solo passaggio (fatto lato SQL).
-    // Nota: per ora non controlla il campo Attivo — lo aggiungeremo quando
-    // affronteremo il flusso di login/gestione errori per intero.
-    public Optional<Utente> login(final String email, final String passwordChiara) throws SQLException {
+    // Se le credenziali sono corrette ma l'account è disattivato, lancia
+    // AccountDisattivatoException invece di lasciar passare l'accesso o
+    // confonderlo con "credenziali errate" (Optional.empty()).
+    public Optional<Utente> login(final String email, final String passwordChiara)
+            throws SQLException, AccountDisattivatoException {
+
         try (Connection connection = DatabaseConnection.getConnection()) {
             final UtenteDAO utenteDAO = new JdbcUtenteDAO(connection);
-            return utenteDAO.login(email, passwordChiara);
+            final Optional<Utente> utente = utenteDAO.login(email, passwordChiara);
+
+            if (utente.isPresent() && !utente.get().isAttivo()) {
+                throw new AccountDisattivatoException(
+                        "Questo account è stato disattivato. Contatta l'assistenza.");
+            }
+
+            return utente;
         }
     }
 }

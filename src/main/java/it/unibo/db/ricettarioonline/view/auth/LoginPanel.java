@@ -1,6 +1,7 @@
 package it.unibo.db.ricettarioonline.view.auth;
 
 import it.unibo.db.ricettarioonline.controller.LoginController;
+import it.unibo.db.ricettarioonline.exception.AccountDisattivatoException;
 import it.unibo.db.ricettarioonline.model.Utente;
 import it.unibo.db.ricettarioonline.view.MainFrame;
 import it.unibo.db.ricettarioonline.view.components.RoundedCardPanel;
@@ -190,8 +191,13 @@ public class LoginPanel extends JPanel {
                         statusLabel.setText("Credenziali non valide.");
                     }
                 } catch (final Exception ex) {
-                    statusLabel.setForeground(AppTheme.ERROR);
-                    statusLabel.setText("Errore di accesso al database.");
+                    if (ex.getCause() instanceof AccountDisattivatoException) {
+                        statusLabel.setForeground(AppTheme.ERROR);
+                        statusLabel.setText(ex.getCause().getMessage());
+                    } else {
+                        statusLabel.setForeground(AppTheme.ERROR);
+                        statusLabel.setText("Errore di accesso al database.");
+                    }
                 }
             }
         }.execute();

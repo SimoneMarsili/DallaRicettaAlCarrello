@@ -12,6 +12,7 @@ import it.unibo.db.ricettarioonline.view.theme.AppTheme;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -102,11 +103,13 @@ public class ClassifichePanel extends JPanel {
     }
 
     // Metodo generico: se codiceExtractor non è null, ogni riga diventa
-    // cliccabile e apre il dettaglio della ricetta corrispondente.
+    // cliccabile e apre il dettaglio della ricetta corrispondente. Include un
+    // pulsante "Aggiorna", perché i dati non si aggiornano da soli quando
+    // l'utente pubblica/ordina/recensisce una ricetta da un'altra schermata.
     private <T> JPanel creaScheda(final CaricaDati<T> caricaDati, final Function<T, String> formattatore,
             final Function<T, Long> codiceExtractor) {
 
-        final JPanel scheda = new JPanel(new BorderLayout());
+        final JPanel scheda = new JPanel(new BorderLayout(0, 8));
         scheda.setOpaque(false);
         scheda.setBorder(BorderFactory.createEmptyBorder(16, 0, 0, 0));
 
@@ -114,10 +117,17 @@ public class ClassifichePanel extends JPanel {
         elenco.setLayout(new BoxLayout(elenco, BoxLayout.Y_AXIS));
         elenco.setOpaque(false);
 
-        final JLabel caricamento = new JLabel("Caricamento...");
-        caricamento.setForeground(AppTheme.TEXT_MUTED);
-        caricamento.setAlignmentX(Component.LEFT_ALIGNMENT);
-        elenco.add(caricamento);
+        final JLabel statusLabel = new JLabel(" ");
+        statusLabel.setFont(AppTheme.FONT_SUBTITLE);
+
+        final JButton aggiornaButton = new JButton("Aggiorna");
+        aggiornaButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+
+        final JPanel intestazione = new JPanel(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 8, 0));
+        intestazione.setOpaque(false);
+        intestazione.add(aggiornaButton);
+        intestazione.add(statusLabel);
+        scheda.add(intestazione, BorderLayout.NORTH);
 
         final JScrollPane scroll = new JScrollPane(elenco);
         scroll.setBorder(BorderFactory.createEmptyBorder());
@@ -125,42 +135,49 @@ public class ClassifichePanel extends JPanel {
         scroll.setOpaque(false);
         scheda.add(scroll, BorderLayout.CENTER);
 
-        new SwingWorker<List<T>, Void>() {
-            @Override
-            protected List<T> doInBackground() throws Exception {
-                return caricaDati.esegui();
-            }
+        final Runnable carica = () -> {
+            statusLabel.setForeground(AppTheme.TEXT_MUTED);
+            statusLabel.setText("Caricamento...");
 
-            @Override
-            protected void done() {
-                elenco.removeAll();
-                try {
-                    final List<T> risultati = get();
-                    if (risultati.isEmpty()) {
-                        final JLabel vuoto = new JLabel("Nessun dato disponibile.");
-                        vuoto.setForeground(AppTheme.TEXT_MUTED);
-                        vuoto.setAlignmentX(Component.LEFT_ALIGNMENT);
-                        elenco.add(vuoto);
-                    } else {
-                        int posizione = 1;
-                        for (final T elemento : risultati) {
-                            final Long codiceRicetta = codiceExtractor == null
-                                    ? null : codiceExtractor.apply(elemento);
-                            elenco.add(creaRiga(posizione, formattatore.apply(elemento), codiceRicetta));
-                            elenco.add(Box.createVerticalStrut(8));
-                            posizione++;
-                        }
-                    }
-                } catch (final Exception ex) {
-                    final JLabel errore = new JLabel("Errore nel caricamento della classifica.");
-                    errore.setForeground(AppTheme.ERROR);
-                    errore.setAlignmentX(Component.LEFT_ALIGNMENT);
-                    elenco.add(errore);
+            new SwingWorker<List<T>, Void>() {
+                @Override
+                protected List<T> doInBackground() throws Exception {
+                    return caricaDati.esegui();
                 }
-                elenco.revalidate();
-                elenco.repaint();
-            }
-        }.execute();
+
+                @Override
+                protected void done() {
+                    elenco.removeAll();
+                    try {
+                        final List<T> risultati = get();
+                        statusLabel.setText(" ");
+                        if (risultati.isEmpty()) {
+                            final JLabel vuoto = new JLabel("Nessun dato disponibile.");
+                            vuoto.setForeground(AppTheme.TEXT_MUTED);
+                            vuoto.setAlignmentX(Component.LEFT_ALIGNMENT);
+                            elenco.add(vuoto);
+                        } else {
+                            int posizione = 1;
+                            for (final T elemento : risultati) {
+                                final Long codiceRicetta = codiceExtractor == null
+                                        ? null : codiceExtractor.apply(elemento);
+                                elenco.add(creaRiga(posizione, formattatore.apply(elemento), codiceRicetta));
+                                elenco.add(Box.createVerticalStrut(8));
+                                posizione++;
+                            }
+                        }
+                    } catch (final Exception ex) {
+                        statusLabel.setForeground(AppTheme.ERROR);
+                        statusLabel.setText("Errore nel caricamento.");
+                    }
+                    elenco.revalidate();
+                    elenco.repaint();
+                }
+            }.execute();
+        };
+
+        aggiornaButton.addActionListener(e -> carica.run());
+        carica.run(); // primo caricamento, all'apertura della scheda
 
         return scheda;
     }

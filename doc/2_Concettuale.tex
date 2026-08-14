@@ -22,8 +22,8 @@ Secondo il nostro dominio, un \textbf{utente} al momento della registrazione dev
 
 Un \textbf{utente}, una volta registrato al sito, può pubblicare delle \textbf{ricette},  le quali posseggono un codice univoco progressivo (CodiceRicetta) e un identificatore alternativo (Utente, nomeRicetta) e sono associate a un solo \textbf{utente}, ovvero colui che la pubblica.
 
-Si è deciso in fase di progettazione concettuale di tenere valida la chiave primaria CodiceRicetta, in quanto la chiave alternativa composta (Utente, Nomericetta) avrebbe portato al pericolo di ridondanze e complicazioni per quanto riguarda un futuro aggiornamento del Database e la sua effettiva propagazione. 
-\\L’identificatore alternativo (Utente, nomeRicetta) verrà successivamente espresso come vincolo UNIQUE in fase di progettazione logica, in modo tale modellare correttamente il vincolo di dominio secondo il quale un \textbf{utente} non può pubblicare ricette omonime.
+Si è deciso in fase di progettazione concettuale di tenere valida la chiave primaria CodiceRicetta, in quanto la chiave alternativa composta (Utente, NomeRicetta) avrebbe portato al pericolo di ridondanze e complicazioni per quanto riguarda un futuro aggiornamento del Database e la sua effettiva propagazione. 
+\\L’identificatore alternativo (Utente, nomeRicetta) verrà successivamente espresso come vincolo UNIQUE in fase di progettazione logica, in modo tale da modellare correttamente il vincolo di dominio secondo il quale un \textbf{utente} non può pubblicare ricette omonime.
 
 Al momento della pubblicazione della \textbf{ricetta}, oltre agli attributi generali bisogna associarvi obbligatoriamente almeno un \textbf{ingrediente}, indicando anche la sua relativa quantità, la quale viene salvata nell’associazione \textbf{composizione} come attributo. \\
 Dopo aver aggiunto almeno un \textbf{ingrediente} va aggiunta obbligatoriamente almeno una \textbf{categoria} di appartenenza per la \textbf{ricetta}, la quale è identificata da un codice univoco (CodiceCategoria). \\

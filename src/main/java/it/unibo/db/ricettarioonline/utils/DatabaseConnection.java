@@ -10,7 +10,7 @@ public final class DatabaseConnection {
             "jdbc:mysql://localhost:3306/RicettarioOnline"
             + "?serverTimezone=Europe/Rome";
     private static final String DEFAULT_USER = "root";
-    private static final String DEFAULT_PASSWORD = "Sqlmaster123.";
+    private static final String DEFAULT_PASSWORD = "";
 
     private DatabaseConnection() {
     }

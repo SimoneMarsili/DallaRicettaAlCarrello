@@ -41,14 +41,14 @@ public class JdbcScontoDAO implements ScontoDAO {
     public BigDecimal findMigliorSconto(final long codiceRicetta) throws SQLException {
         final String sql = "SELECT COALESCE(MAX(S.PercentualeSconto), 0) "
                 + "FROM RICETTE R "
-                + "LEFT JOIN CLASSIFICAZIONI CL ON CL.CodiceRicetta = R.CodiceRicetta "
-                + "LEFT JOIN SCONTI S "
+                + "JOIN CLASSIFICAZIONI CL ON CL.CodiceRicetta = R.CodiceRicetta "
+                + "JOIN SCONTI S "
                 + "    ON S.CodiceCategoria = CL.CodiceCategoria "
                 + "   AND R.NumeroIngredienti BETWEEN S.MinIngredienti AND S.MaxIngredienti "
-                + "LEFT JOIN PROMOZIONI P "
+                + "JOIN PROMOZIONI P "
                 + "    ON P.CodicePromo = S.CodicePromo "
-                + "   AND CURRENT_DATE BETWEEN P.DataInizio AND P.DataFine "
-                + "WHERE R.CodiceRicetta = ?";
+                + "WHERE R.CodiceRicetta = ? "
+                + "AND CURRENT_DATE BETWEEN P.DataInizio AND P.DataFine";
 
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
             ps.setLong(1, codiceRicetta);

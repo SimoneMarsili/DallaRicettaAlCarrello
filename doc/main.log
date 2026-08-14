@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.5.18)  8 AUG 2026 18:44
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.5.18)  14 AUG 2026 20:29
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -715,14 +715,14 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <8> on input line 4.
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <6> on input line 4.
-)
-\tf@toc=\write4
-\openout4 = `main.toc'.
-
  [1
 
 
-] (1_Analisi.tex
+])
+\tf@toc=\write4
+\openout4 = `main.toc'.
+
+ [2] (1_Analisi.tex
 Capitolo 1.
 
 Underfull \hbox (badness 10000) in paragraph at lines 29--34
@@ -758,7 +758,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 241--242
 
 [6{C:/Users/Dell/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathit.enc}]) (2_Concettuale.tex [7]
 Capitolo 2.
-<images/conc_pubblicazione.png, id=254, 832.3095pt x 331.83975pt>
+<images/conc_pubblicazione.png, id=342, 832.3095pt x 331.83975pt>
 File: images/conc_pubblicazione.png Graphic file (type png)
 <use images/conc_pubblicazione.png>
 Package pdftex.def Info: images/conc_pubblicazione.png  used on input line 11.
@@ -766,24 +766,24 @@ Package pdftex.def Info: images/conc_pubblicazione.png  used on input line 11.
 [8
 
  <./images/conc_pubblicazione.png>]
-<images/conc_recensione.png, id=263, 579.3645pt x 181.8795pt>
+<images/conc_recensione.png, id=351, 579.3645pt x 181.8795pt>
 File: images/conc_recensione.png Graphic file (type png)
 <use images/conc_recensione.png>
 Package pdftex.def Info: images/conc_recensione.png  used on input line 38.
 (pdftex.def)             Requested size: 455.24411pt x 142.91725pt.
-<images/conc_ordine.png, id=264, 690.78075pt x 237.88875pt>
+<images/conc_ordine.png, id=352, 690.78075pt x 237.88875pt>
 File: images/conc_ordine.png Graphic file (type png)
 <use images/conc_ordine.png>
 Package pdftex.def Info: images/conc_ordine.png  used on input line 59.
 (pdftex.def)             Requested size: 455.24411pt x 156.782pt.
  [9 <./images/conc_recensione.png> <./images/conc_ordine.png>]
-<images/conc_sconto.png, id=273, 534.19576pt x 349.305pt>
+<images/conc_sconto.png, id=361, 534.19576pt x 349.305pt>
 File: images/conc_sconto.png Graphic file (type png)
 <use images/conc_sconto.png>
 Package pdftex.def Info: images/conc_sconto.png  used on input line 80.
 (pdftex.def)             Requested size: 455.24411pt x 297.67816pt.
  [10 <./images/conc_sconto.png>] [11]
-<images/conc_finale.png, id=285, 840.741pt x 437.83575pt>
+<images/conc_finale.png, id=373, 840.741pt x 437.83575pt>
 File: images/conc_finale.png Graphic file (type png)
 <use images/conc_finale.png>
 Package pdftex.def Info: images/conc_finale.png  used on input line 131.
@@ -793,81 +793,81 @@ Capitolo 3.
 [13
 
 ] [14{C:/Users/Dell/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathsy.enc}]
-<images/nav_u3.2.png, id=304, 476.37975pt x 133.6995pt>
+<images/nav_u3.2.png, id=392, 476.37975pt x 133.6995pt>
 File: images/nav_u3.2.png Graphic file (type png)
 <use images/nav_u3.2.png>
 Package pdftex.def Info: images/nav_u3.2.png  used on input line 129.
 (pdftex.def)             Requested size: 364.19667pt x 102.21448pt.
-<images/nav_u3.5.png, id=305, 513.117pt x 160.1985pt>
+<images/nav_u3.5.png, id=393, 513.117pt x 160.1985pt>
 File: images/nav_u3.5.png Graphic file (type png)
 <use images/nav_u3.5.png>
 Package pdftex.def Info: images/nav_u3.5.png  used on input line 166.
 (pdftex.def)             Requested size: 364.19667pt x 113.7075pt.
  [15{C:/Users/Dell/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-rm.enc} <./images/nav_u3.2.png> <./images/nav_u3.5.png>]
-<images/nav_u3.6.png, id=316, 467.346pt x 133.6995pt>
+<images/nav_u3.6.png, id=404, 467.346pt x 133.6995pt>
 File: images/nav_u3.6.png Graphic file (type png)
 <use images/nav_u3.6.png>
 Package pdftex.def Info: images/nav_u3.6.png  used on input line 204.
 (pdftex.def)             Requested size: 364.19667pt x 104.18929pt.
-<images/nav_u5.png, id=317, 522.15076pt x 136.71075pt>
+<images/nav_u5.png, id=405, 522.15076pt x 136.71075pt>
 File: images/nav_u5.png Graphic file (type png)
 <use images/nav_u5.png>
 Package pdftex.def Info: images/nav_u5.png  used on input line 246.
 (pdftex.def)             Requested size: 364.19667pt x 95.35892pt.
  [16 <./images/nav_u3.6.png> <./images/nav_u5.png>]
-<images/nav_u6.png, id=328, 811.23074pt x 317.38576pt>
+<images/nav_u6.png, id=417, 811.23074pt x 317.38576pt>
 File: images/nav_u6.png Graphic file (type png)
 <use images/nav_u6.png>
 Package pdftex.def Info: images/nav_u6.png  used on input line 288.
 (pdftex.def)             Requested size: 364.19667pt x 142.4881pt.
  [17 <./images/nav_u6.png>]
-<images/nav_u8.2.png, id=338, 540.21825pt x 157.7895pt>
+<images/nav_u8.2.png, id=426, 540.21825pt x 157.7895pt>
 File: images/nav_u8.2.png Graphic file (type png)
 <use images/nav_u8.2.png>
 Package pdftex.def Info: images/nav_u8.2.png  used on input line 340.
 (pdftex.def)             Requested size: 364.19667pt x 106.38051pt.
-<images/nav_u8.3.png, id=339, 422.17725pt x 147.55125pt>
+<images/nav_u8.3.png, id=427, 422.17725pt x 147.55125pt>
 File: images/nav_u8.3.png Graphic file (type png)
 <use images/nav_u8.3.png>
 Package pdftex.def Info: images/nav_u8.3.png  used on input line 378.
 (pdftex.def)             Requested size: 364.19667pt x 127.29234pt.
  [18 <./images/nav_u8.2.png> <./images/nav_u8.3.png>]
-<images/nav_u8.4.png, id=350, 672.71326pt x 151.16475pt>
+<images/nav_u8.4.png, id=438, 672.71326pt x 151.16475pt>
 File: images/nav_u8.4.png Graphic file (type png)
 <use images/nav_u8.4.png>
 Package pdftex.def Info: images/nav_u8.4.png  used on input line 414.
 (pdftex.def)             Requested size: 455.24411pt x 102.29935pt.
-<images/nav_u9.png, id=351, 707.64375pt x 359.54324pt>
+<images/nav_u9.png, id=439, 707.64375pt x 359.54324pt>
 File: images/nav_u9.png Graphic file (type png)
 <use images/nav_u9.png>
 Package pdftex.def Info: images/nav_u9.png  used on input line 458.
 (pdftex.def)             Requested size: 455.24411pt x 231.30287pt.
  [19 <./images/nav_u8.4.png>]
-<images/nav_u10.png, id=359, 693.792pt x 151.767pt>
+<images/nav_u10.png, id=447, 693.792pt x 151.767pt>
 File: images/nav_u10.png Graphic file (type png)
 <use images/nav_u10.png>
 Package pdftex.def Info: images/nav_u10.png  used on input line 516.
 (pdftex.def)             Requested size: 455.24411pt x 99.58525pt.
  [20 <./images/nav_u9.png>]
-<images/nav_u11.png, id=367, 814.242pt x 338.4645pt>
+<images/nav_u11.png, id=455, 814.242pt x 338.4645pt>
 File: images/nav_u11.png Graphic file (type png)
 <use images/nav_u11.png>
 Package pdftex.def Info: images/nav_u11.png  used on input line 563.
 (pdftex.def)             Requested size: 455.24411pt x 189.23927pt.
  [21 <./images/nav_u10.png> <./images/nav_u11.png>]
-<images/nav_a5.png, id=377, 747.9945pt x 130.086pt>
+<images/nav_a5.png, id=465, 747.9945pt x 130.086pt>
 File: images/nav_a5.png Graphic file (type png)
 <use images/nav_a5.png>
 Package pdftex.def Info: images/nav_a5.png  used on input line 613.
 (pdftex.def)             Requested size: 455.24411pt x 79.17368pt.
  [22 <./images/nav_a5.png>]
-<images/nav_a6.png, id=386, 813.0375pt x 310.761pt>
+<images/nav_a6.png, id=475, 813.0375pt x 310.761pt>
 File: images/nav_a6.png Graphic file (type png)
 <use images/nav_a6.png>
 Package pdftex.def Info: images/nav_a6.png  used on input line 661.
 (pdftex.def)             Requested size: 455.24411pt x 174.00125pt.
  [23 <./images/nav_a6.png>] [24] [25] [26] [27] [28] [29]
-<images/rel_fin.png, id=438, 828.696pt x 428.19975pt>
+<images/rel_fin.png, id=526, 828.696pt x 428.19975pt>
 File: images/rel_fin.png Graphic file (type png)
 <use images/rel_fin.png>
 Package pdftex.def Info: images/rel_fin.png  used on input line 1189.
@@ -894,7 +894,83 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `pcr' (encoding: TS1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
-) (sql/creazione_db.sql) [36] (sql/creazione_db.sql) (sql/creazione_db.sql) (sql/creazione_db.sql [37]) (sql/creazione_db.sql) (sql/creazione_db.sql [38]) (sql/creazione_db.sql) (sql/creazione_db.sql [39]) (sql/creazione_db.sql)) [40] (main.aux)
+) (sql/creazione_db.sql) [36] (sql/creazione_db.sql) (sql/creazione_db.sql) (sql/creazione_db.sql [37]) (sql/creazione_db.sql) (sql/creazione_db.sql [38]) (sql/creazione_db.sql) (sql/creazione_db.sql [39]) (sql/creazione_db.sql) (sql/query_operazioni.sql) (sql/query_operazioni.sql [40]) (sql/query_operazioni.sql) (sql/query_operazioni.sql) (sql/query_operazioni.sql [41]) (sql/query_operazioni.sql) (sql/query_operazioni.sql) (sql/query_operazioni.sql [42]) (sql/query_operazioni.sql) (sql/query_operazioni.sql) (sql/query_operazioni.sql) [43] (sql/query_operazioni.sql) (sql/query_operazioni.sql) (sql/query_operazioni.sql [44]) (sql/query_operazioni.sql) (sql/query_operazioni.sql) (sql/query_operazioni.sql [45]) (sql/query_operazioni.sql) [46] (sql/query_operazioni.sql
+Overfull \hbox (4.94945pt too wide) in paragraph at lines 320--322
+[][][][] 
+ []
+
+
+Overfull \hbox (4.94945pt too wide) in paragraph at lines 331--333
+[][][][] 
+ []
+
+) (sql/query_operazioni.sql [47]) (sql/query_operazioni.sql) (sql/query_operazioni.sql) (sql/query_operazioni.sql) (sql/query_operazioni.sql) (sql/query_operazioni.sql [48])) (5_Applicazione.tex [49]
+Capitolo 5.
+[50
+
+] [51]
+<images/login.png, id=1312, 370.38374pt x 425.79076pt>
+File: images/login.png Graphic file (type png)
+<use images/login.png>
+Package pdftex.def Info: images/login.png  used on input line 61.
+(pdftex.def)             Requested size: 218.51521pt x 251.20787pt.
+<images/registrazione.png, id=1313, 364.9635pt x 419.166pt>
+File: images/registrazione.png Graphic file (type png)
+<use images/registrazione.png>
+Package pdftex.def Info: images/registrazione.png  used on input line 68.
+(pdftex.def)             Requested size: 218.51521pt x 250.97067pt.
+<images/menu.png, id=1314, 760.0395pt x 498.06075pt>
+File: images/menu.png Graphic file (type png)
+<use images/menu.png>
+Package pdftex.def Info: images/menu.png  used on input line 82.
+(pdftex.def)             Requested size: 455.24411pt x 298.32196pt.
+ [52 <./images/login.png> <./images/registrazione.png>]
+<images/filtro.png, id=1323, 594.42075pt x 452.892pt>
+File: images/filtro.png Graphic file (type png)
+<use images/filtro.png>
+Package pdftex.def Info: images/filtro.png  used on input line 94.
+(pdftex.def)             Requested size: 364.19667pt x 277.48688pt.
+ [53 <./images/menu.png>]
+<images/dettaglio_ricetta.png, id=1330, 594.42075pt x 501.072pt>
+File: images/dettaglio_ricetta.png Graphic file (type png)
+<use images/dettaglio_ricetta.png>
+Package pdftex.def Info: images/dettaglio_ricetta.png  used on input line 101.
+(pdftex.def)             Requested size: 364.19667pt x 307.00677pt.
+ [54 <./images/filtro.png> <./images/dettaglio_ricetta.png>]
+<images/pubblicazione_ricetta.png, id=1339, 976.24725pt x 540.21825pt>
+File: images/pubblicazione_ricetta.png Graphic file (type png)
+<use images/pubblicazione_ricetta.png>
+Package pdftex.def Info: images/pubblicazione_ricetta.png  used on input line 113.
+(pdftex.def)             Requested size: 455.24411pt x 251.91603pt.
+<images/vantaggi.png, id=1340, 627.5445pt x 335.45325pt>
+File: images/vantaggi.png Graphic file (type png)
+<use images/vantaggi.png>
+Package pdftex.def Info: images/vantaggi.png  used on input line 124.
+(pdftex.def)             Requested size: 455.24411pt x 243.35347pt.
+ [55 <./images/pubblicazione_ricetta.png>]
+<images/carrello.png, id=1347, 975.645pt x 573.342pt>
+File: images/carrello.png Graphic file (type png)
+<use images/carrello.png>
+Package pdftex.def Info: images/carrello.png  used on input line 136.
+(pdftex.def)             Requested size: 455.24411pt x 267.52861pt.
+ [56 <./images/vantaggi.png> <./images/carrello.png>]
+<images/storico_ordini.png, id=1356, 623.32875pt x 494.44725pt>
+File: images/storico_ordini.png Graphic file (type png)
+<use images/storico_ordini.png>
+Package pdftex.def Info: images/storico_ordini.png  used on input line 147.
+(pdftex.def)             Requested size: 364.19667pt x 288.89964pt.
+<images/classifiche.png, id=1357, 623.931pt x 401.70074pt>
+File: images/classifiche.png Graphic file (type png)
+<use images/classifiche.png>
+Package pdftex.def Info: images/classifiche.png  used on input line 159.
+(pdftex.def)             Requested size: 364.19667pt x 234.48218pt.
+ [57 <./images/storico_ordini.png>]
+<images/admin.png, id=1364, 621.522pt x 497.4585pt>
+File: images/admin.png Graphic file (type png)
+<use images/admin.png>
+Package pdftex.def Info: images/admin.png  used on input line 170.
+(pdftex.def)             Requested size: 364.19667pt x 291.50163pt.
+) [58 <./images/classifiche.png> <./images/admin.png>] (main.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2025-12-24>
@@ -904,20 +980,20 @@ L3 programming layer <2025-12-24>
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 5136F317054A9FDDAFEE93921C0A37D6;4933.
+(rerunfilecheck)             Checksum: 57B0082B2C67D5CA94BAC69E22E2E909;7660.
  ) 
 Here is how much of TeX's memory you used:
- 19222 strings out of 467871
- 310067 string characters out of 5418860
- 1124472 words of memory out of 5000000
- 47109 multiletter control sequences out of 15000+600000
- 697029 words of font info for 166 fonts, out of 8000000 for 9000
+ 19816 strings out of 467871
+ 321888 string characters out of 5418860
+ 1124473 words of memory out of 5000000
+ 47249 multiletter control sequences out of 15000+600000
+ 697884 words of font info for 175 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 69i,11n,79p,1236b,2109s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 69i,11n,79p,1236b,2111s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/Dell/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx10.pfb><C:/Users/Dell/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx12.pfb><C:/Users/Dell/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbxi10.pfb><C:/Users/Dell/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi12.pfb><C:/Users/Dell/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr10.pfb><C:/Users/Dell/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr12.pfb><C:/Users/Dell/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr17.pfb><C:/Users/Dell/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr6.pfb><C:/Users/Dell/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmri12.pfb><C:/Users/Dell/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy10.pfb><C:/Users/Dell/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtt12.pfb><C:/Users/Dell/AppData/Local/Programs/MiKTeX/fonts/type1/urw/courier/ucrr8a.pfb>
-Output written on main.pdf (42 pages, 849246 bytes).
+Output written on main.pdf (61 pages, 1164102 bytes).
 PDF statistics:
- 1007 PDF objects out of 1200 (max. 8388607)
- 505 named destinations out of 1000 (max. 500000)
- 42824 words of extra memory for PDF output out of 42996 (max. 10000000)
+ 1617 PDF objects out of 1728 (max. 8388607)
+ 887 named destinations out of 1000 (max. 500000)
+ 42991 words of extra memory for PDF output out of 42996 (max. 10000000)
 

@@ -94,7 +94,7 @@ public class CatalogoPanel extends JPanel {
 
         tipoFiltro.addActionListener(e -> {
             final String scelta = (String) tipoFiltro.getSelectedItem();
-            campoFiltro2.setVisible("Fascia di prezzo".equals(scelta));
+            campoFiltro2.setVisible("Fascia di prezzo".equals(scelta) || "Autore".equals(scelta));
         });
 
         final JButton cercaButton = new JButton("Cerca");
