@@ -1,9 +1,9 @@
 # Fdb version 4
-["pdflatex"] 1786732171.69039 "c:/Users/Dell/Desktop/RicettarioOnline/doc/main.tex" "main.pdf" "main" 1786732184.39664 0
+["pdflatex"] 1788250219.88713 "c:/Users/Dell/Desktop/RicettarioOnline/doc/main.tex" "main.pdf" "main" 1788250236.94762 0
   "1_Analisi.tex" 1786462908 16476 678acacb3ab6a3fc7097cf6448a69ce9 ""
   "2_Concettuale.tex" 1786463094 10885 a82d90948d3c963406bae5e5210ead6f ""
   "3_Logica.tex" 1784905237 37502 b925fec91334560d82287d1638560153 ""
-  "4_SQL.tex" 1786705668 11961 42049d25adcc0b5d83a9e63354581b9c ""
+  "4_SQL.tex" 1788250213 11961 2d59050f4aedad888088523e3387423b ""
   "5_Applicazione.tex" 1786732169 12382 cba9881b889be7e79f07bbd3cd220e93 ""
   "C:/Users/Dell/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1784907058 82507 a9eef8696c92627b87e9975edea03b2a ""
   "C:/Users/Dell/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1779126243 13333003 2f0510a7f394a725ed91592ab64cbeda ""
@@ -178,10 +178,10 @@
   "images/rel_fin.png" 1784905189 98697 d88e723d48ff7901b3cddf7658bfef66 ""
   "images/storico_ordini.png" 1786731237 28147 6c56c82467b6e31f62805b521b2cd286 ""
   "images/vantaggi.png" 1786730686 39138 638ca4998d9876059f8ace9802d4d8b6 ""
-  "main.aux" 1786732183 20157 e87b9bbfc6f6a2ad9f3d5f1fdfe03f16 "pdflatex"
-  "main.out" 1786732183 7660 57b0082b2c67d5ca94bac69e22e2e909 "pdflatex"
+  "main.aux" 1788250236 20157 e87b9bbfc6f6a2ad9f3d5f1fdfe03f16 "pdflatex"
+  "main.out" 1788250236 7660 57b0082b2c67d5ca94bac69e22e2e909 "pdflatex"
   "main.tex" 1786723359 3280 cc9d8f1438f7de60784de3de46f23ebd ""
-  "main.toc" 1786732183 3832 8b130188a1b7c47a60d0dbe69c1cbed0 "pdflatex"
+  "main.toc" 1788250236 3832 8b130188a1b7c47a60d0dbe69c1cbed0 "pdflatex"
   "sql/creazione_db.sql" 1784907711 14095 1785a291b28d749195f15a8153b8a220 ""
   "sql/query_operazioni.sql" 1786702922 11215 91862fb07efae3fc8b64ea90b9f58f80 ""
   (generated)

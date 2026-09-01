@@ -33,21 +33,21 @@ SET @cat_dessert = (SELECT CodiceCategoria FROM categorie WHERE Nome = 'Dessert'
 -- Ingredienti
 INSERT INTO ingredienti (Nome, Prezzo, Vegano)
 VALUES
-("Petto di pollo", 13, FALSE),
-("Patate pasta gialla", 2, TRUE),
-("Farina 00", 2, TRUE),
-("Uova", 4.50, FALSE),
-("Pecorino Romano", 18, FALSE),
-("Latte intero", 2.50, FALSE),
+("Petto di pollo", 16, FALSE),
+("Patate pasta gialla", 5, TRUE),
+("Farina 00", 4, TRUE),
+("Uova", 6, FALSE),
+("Pecorino Romano", 20, FALSE),
+("Latte intero", 4, FALSE),
 ("Parmigiano Reggiano", 20, FALSE),
-("Burro", 10, FALSE),
-("Guanciale", 17, FALSE),
-("Spaghetti", 2.50, TRUE),
-("Pomodori pelati", 3.50, TRUE),
-("Basilico", 13, TRUE),
-("Aglio", 4, TRUE),
-("Pepe nero in grani", 22, TRUE),
-("Vino bianco", 7, TRUE);
+("Burro", 12, FALSE),
+("Guanciale", 19, FALSE),
+("Spaghetti", 3.5, TRUE),
+("Pomodori pelati", 4.5, TRUE),
+("Basilico", 14, TRUE),
+("Aglio", 4.5, TRUE),
+("Pepe nero in grani", 23, TRUE),
+("Vino bianco", 10, TRUE);
 SET @petto_pollo = (SELECT CodiceIngrediente FROM ingredienti WHERE Nome = 'Petto di pollo');
 SET @patate_gialle = (SELECT CodiceIngrediente FROM ingredienti WHERE Nome = 'Patate pasta gialla');
 SET @farina_00 = (SELECT CodiceIngrediente FROM ingredienti WHERE Nome = 'Farina 00');
